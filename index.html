@@ -6,6 +6,18 @@
     <title>Deepen Nehra | Full-Stack Developer</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            try {
+                emailjs.init("sq0VRnGdbgFGyPPb5");
+                console.log("EmailJS initialized successfully");
+            } catch(error) {
+                console.error("EmailJS initialization failed:", error);
+            }
+        })();
+    </script>
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
@@ -75,7 +87,7 @@
                             <div class="water-ripple"></div>
                             <div class="water-ripple ripple-2"></div>
                             <div class="water-ripple ripple-3"></div>
-                            <img src="images/profile.jpg" alt="Deepen Nehra" class="profile-img">
+                            <img src="./images/profile.png" alt="Deepen Nehra" class="profile-img">
                             <div class="atlantean-border"></div>
                         </div>
                     </div>
@@ -310,7 +322,7 @@
                         </div>
                         
                         <div class="figma-projects-list">
-                            <a href="https://www.figma.com/design/rnZvuSl4uGwr3WJF8ZCgoy/Customer-Retail-Segmentation-Diagram" target="_blank" class="figma-project-item">
+                            <div class="figma-project-item">
                                 <div class="figma-icon">📊</div>
                                 <div class="figma-content">
                                     <h4>Retail Customer Segmentation System</h4>
@@ -321,10 +333,12 @@
                                         <span class="tag">Enterprise UI</span>
                                     </div>
                                 </div>
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
+                                <a href="https://www.figma.com/design/rnZvuSl4uGwr3WJF8ZCgoy/Customer-Retail-Segmentation-Diagram" target="_blank" class="figma-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
 
-                            <a href="https://www.figma.com/board/Yk7nVsSU10Hp6A75bfKObG/Week-3-Bitcoin-Challenge" target="_blank" class="figma-project-item">
+                            <div class="figma-project-item">
                                 <div class="figma-icon">₿</div>
                                 <div class="figma-content">
                                     <h4>Bitcoin Challenge Dashboard</h4>
@@ -335,10 +349,12 @@
                                         <span class="tag">Data Analytics</span>
                                     </div>
                                 </div>
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
+                                <a href="https://www.figma.com/board/Yk7nVsSU10Hp6A75bfKObG/Week-3-Bitcoin-Challenge" target="_blank" class="figma-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
 
-                            <a href="https://www.figma.com/design/pCJNSfZexzRnHeHATQoKGF/Deepen---Women-Safety-App--Community-" target="_blank" class="figma-project-item">
+                            <div class="figma-project-item">
                                 <div class="figma-icon">🛡️</div>
                                 <div class="figma-content">
                                     <h4>Women Safety App - Community Design</h4>
@@ -349,8 +365,10 @@
                                         <span class="tag">User Flow</span>
                                     </div>
                                 </div>
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
+                                <a href="https://www.figma.com/design/pCJNSfZexzRnHeHATQoKGF/Deepen---Women-Safety-App--Community-" target="_blank" class="figma-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
                         </div>
                         
                         <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(0, 212, 255, 0.2);">
@@ -523,7 +541,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Deepen Nehra. Built with passion and code.</p>
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> Deepen Nehra. Built with passion and code.</p>
         </div>
     </footer>
 

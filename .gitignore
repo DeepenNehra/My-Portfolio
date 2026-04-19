@@ -31,3 +31,6 @@ build/
 
 # Netlify
 .netlify/
+
+# EmailJS (if using environment variables)
+.env.emailjs

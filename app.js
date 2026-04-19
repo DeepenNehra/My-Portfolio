@@ -60,8 +60,28 @@ document.querySelectorAll('.project-card, .skill-category, .highlight-item').for
     observer.observe(el);
 });
 
-// ======= FORM SUBMISSION =======
+// ======= FORM SUBMISSION WITH EMAILJS =======
 const contactForm = document.querySelector('#contactForm');
+
+// Toast notification function
+function showToast(message, type = 'success') {
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    toast.innerHTML = `
+        <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+        <span>${message}</span>
+    `;
+    document.body.appendChild(toast);
+    
+    // Trigger animation
+    setTimeout(() => toast.classList.add('show'), 100);
+    
+    // Remove after 4 seconds
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+    }, 4000);
+}
 
 contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -72,19 +92,62 @@ contactForm.addEventListener('submit', (e) => {
     const subject = contactForm.querySelector('input[name="subject"]').value || 'Portfolio Contact';
     const message = contactForm.querySelector('textarea[name="message"]').value;
     
-    // Create mailto link with form data
-    const mailtoLink = `mailto:nehra7deepen5@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
-        `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-    )}`;
+    // Validate form
+    if (!name || !email || !message) {
+        showToast('Please fill in all required fields', 'error');
+        return;
+    }
     
-    // Open email client
-    window.location.href = mailtoLink;
+    // Show loading state
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    submitBtn.disabled = true;
     
-    // Show success message
-    alert('Opening your email client... Please send the email to complete your message.');
+    // EmailJS parameters - matching your template variables
+    const templateParams = {
+        name: name,           // {{name}}
+        email: email,         // {{email}}
+        title: subject,       // {{title}}
+        message: message      // {{message}}
+    };
     
-    // Reset form
-    contactForm.reset();
+    console.log('Sending email with params:', templateParams);
+    console.log('Service ID:', 'service_yftjexm');
+    console.log('Template ID:', 'template_ifphcsa');
+    
+    // Send email using EmailJS
+    emailjs.send('service_yftjexm', 'template_ifphcsa', templateParams)
+        .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
+            showToast('✅ Message sent successfully! I will get back to you soon.', 'success');
+            contactForm.reset();
+        }, function(error) {
+            console.error('FAILED...', error);
+            console.error('Error details:', {
+                status: error.status,
+                text: error.text,
+                message: error.message
+            });
+            
+            // Show more specific error message
+            let errorMsg = 'Failed to send message. ';
+            if (error.status === 400) {
+                errorMsg += 'Please check EmailJS configuration (Service ID or Template ID may be incorrect).';
+            } else if (error.status === 401) {
+                errorMsg += 'Authentication failed. Please check your Public Key.';
+            } else if (error.status === 404) {
+                errorMsg += 'Service or Template not found.';
+            } else {
+                errorMsg += 'Please try emailing me directly at nehra7deepen5@gmail.com';
+            }
+            
+            showToast(errorMsg, 'error');
+        })
+        .finally(function() {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        });
 });
 
 // ======= DYNAMIC TYPING EFFECT FOR HERO TITLE =======
