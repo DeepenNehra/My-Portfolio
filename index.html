@@ -1,1015 +1,967 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deepen Nehra | Creative Technologist & Full-Stack Developer — A Cinematic Experience</title>
-    <meta name="description" content="Official portfolio of Deepen Nehra — Full-Stack Developer, AI specialist, Hackathon Competitor, and Creative Technologist. An A24-inspired cinema screening of projects, code, and productions.">
-    <meta name="keywords" content="Deepen Nehra, Portfolio, Full-Stack Developer, MERN, AI, Machine Learning, WebRTC, Bangalore, Polaris School of Technology">
-    <meta name="author" content="Deepen Nehra">
-
-    <!-- Open Graph / Social Meta -->
-    <meta property="og:title" content="Deepen Nehra — The Cinematic Portfolio">
-    <meta property="og:description" content="Explore the cinematic showcase of full-stack engineering, AI models, and hackathon productions.">
-    <meta property="og:type" content="website">
-
-    <!-- Cinema Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- EmailJS SDK -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function(){
-            emailjs.init("sq0VRnGdbgFGyPPb5");
-        })();
-    </script>
-    
-    <link rel="stylesheet" href="index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Deepen Nehra — Full-Stack Developer & Creative Technologist. CS student at Polaris School of Technology, Bangalore (2024-2028). Building scalable full-stack apps, AI systems, and real-time platforms.">
+  <meta name="keywords" content="Deepen Nehra, Full-Stack Developer, React, Next.js, Node.js, AI, WebRTC, Portfolio, Bangalore">
+  <meta name="author" content="Deepen Nehra">
+  <meta property="og:title" content="Deepen Nehra — Full-Stack Developer & Creative Technologist">
+  <meta property="og:description" content="Computer Science student building scalable full-stack architectures and AI systems.">
+  <meta property="og:type" content="website">
+  <title>Deepen Nehra — Full-Stack Developer & Creative Technologist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>(function(){ emailjs.init("sq0VRnGdbgFGyPPb5"); })();</script>
+  <link rel="stylesheet" href="index.css">
 </head>
-<body class="theme-cinema">
-    <!-- Cinematic Letterboxing (Top & Bottom Bars) -->
-    <div class="letterbox letterbox-top" aria-hidden="true">
-        <span class="letterbox-label letterbox-left">REC ● [ROLL 24 FPS]</span>
-        <span class="letterbox-label letterbox-center">2.39 : 1 ANAMORPHIC SCOPE</span>
-        <span class="letterbox-label letterbox-right">TIME: <span id="reel-timecode">00:00:00:00</span></span>
-    </div>
-    <div class="letterbox letterbox-bottom" aria-hidden="true">
-        <span class="letterbox-label letterbox-left">FEATURE PRESENTATION</span>
-        <span class="letterbox-label letterbox-center">DIRECTED & DEVELOPED BY DEEPEN NEHRA</span>
-        <span class="letterbox-label letterbox-right">BENGALURU, IN [41.3851° N, 2.1734° E]</span>
-    </div>
+<body>
 
-    <!-- Film Grain Overlay -->
-    <div class="film-grain" aria-hidden="true"></div>
+  <!-- AMBIENT BACKGROUND GLOW -->
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <div class="glow glow-3"></div>
+  </div>
 
-    <!-- Cinema Intro: 3-2-1 Projector Countdown & Velvet Curtains -->
-    <div id="cinema-intro" class="cinema-intro">
-        <div class="curtain curtain-left"></div>
-        <div class="curtain curtain-right"></div>
-        <div class="projector-countdown-wrapper">
-            <div class="countdown-circle">
-                <div class="countdown-crosshair-h"></div>
-                <div class="countdown-crosshair-v"></div>
-                <div class="countdown-sweep"></div>
-                <div class="countdown-number" id="countdown-num">3</div>
+  <!-- WATERMARK 3D CANVAS (BACKGROUND SCROLL MODEL) -->
+  <div class="watermark-3d-wrap" id="watermark-3d-wrap" aria-hidden="true">
+    <canvas id="watermark-3d-canvas"></canvas>
+  </div>
+
+  <!-- CUSTOM CURSOR -->
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+  <div id="cursor-dot" aria-hidden="true"></div>
+
+  <!-- NAVIGATION -->
+  <header class="header" id="header">
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+      <ul class="nav-left">
+        <li><a href="#about"      class="nav-link" id="nav-about">ABOUT</a></li>
+        <li><a href="#experience" class="nav-link" id="nav-experience">EXPERIENCE</a></li>
+        <li><a href="#projects"   class="nav-link" id="nav-projects">PROJECTS</a></li>
+      </ul>
+      <a href="#home" class="nav-logo" aria-label="Deepen Nehra — Home">
+        <span class="logo-badge">DN</span>
+      </a>
+      <ul class="nav-right">
+        <li><a href="#skills"  class="nav-link" id="nav-skills">SKILLS</a></li>
+        <li><a href="#contact" class="nav-link" id="nav-contact">CONTACT</a></li>
+        <li><a href="https://drive.google.com/file/d/1wRxeVPP46Vh5gMZPgxxM1-vxhUQmwLJj/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="nav-link nav-resume">RESUME &#x2197;</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu" role="menu">
+      <a href="#about"        class="mobile-link" role="menuitem">ABOUT</a>
+      <a href="#experience"   class="mobile-link" role="menuitem">EXPERIENCE</a>
+      <a href="#projects"     class="mobile-link" role="menuitem">PROJECTS</a>
+      <a href="#figma-design" class="mobile-link" role="menuitem">STORYBOARDS</a>
+      <a href="#skills"       class="mobile-link" role="menuitem">SKILLS</a>
+      <a href="#contact"      class="mobile-link" role="menuitem">CONTACT</a>
+      <a href="https://drive.google.com/file/d/1wRxeVPP46Vh5gMZPgxxM1-vxhUQmwLJj/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="mobile-link" role="menuitem">RESUME &#x2197;</a>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <section id="home" class="hero" aria-label="Hero introduction">
+      <div class="hero-inner">
+        <div class="hero-grid">
+          <!-- HERO LEFT: EDITORIAL CONTENT -->
+          <div class="hero-left">
+            <div class="hero-eyebrow">
+              <span class="status-dot" aria-hidden="true"></span>
+              <span>AVAILABLE FOR ROLES &amp; COLLABORATIONS</span>
+              <span class="eyebrow-sep">&#8212;</span>
+              <span>BENGALURU, INDIA</span>
             </div>
-            <div class="countdown-caption">PREPARING SCREENING REEL...</div>
-            <button id="skip-intro-btn" class="skip-intro-btn" title="Skip Intro sequence">SKIP [ESC]</button>
+            <div class="hero-display">
+              <h1 class="hero-name">DEEPEN<br>NEHRA</h1>
+            </div>
+            <div class="hero-meta">
+              <div class="hero-tags" aria-label="Specializations">
+                <span>FULL-STACK DEVELOPER</span>
+                <span class="tag-sep">/</span>
+                <span>CREATIVE TECHNOLOGIST</span>
+                <span class="tag-sep">/</span>
+                <span>AI SPECIALIST</span>
+              </div>
+              <p class="hero-bio">
+                Computer Science student at <strong>Polaris School of Technology, Bangalore</strong> (2024&#8211;2028).
+                Engineering high-performance full-stack architectures, intelligent AI systems, and real-time platforms.
+              </p>
+            </div>
+            <div class="hero-cta-group">
+              <a href="#projects" class="pill-btn pill-primary" id="hero-projects-btn">
+                <i class="fas fa-layer-group" aria-hidden="true"></i> VIEW PROJECTS
+              </a>
+              <a href="https://drive.google.com/file/d/1wRxeVPP46Vh5gMZPgxxM1-vxhUQmwLJj/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="pill-btn pill-outline" id="hero-resume-btn">
+                <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i> VIEW RESUME
+              </a>
+            </div>
+            <div class="hero-social" aria-label="Social links">
+              <a href="https://github.com/DeepenNehra" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+              <a href="https://www.linkedin.com/in/deepen-nehra-39a1a1321/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+              <a href="https://leetcode.com/u/nehra_deepen/" target="_blank" rel="noopener noreferrer" aria-label="LeetCode"><i class="fas fa-code" aria-hidden="true"></i></a>
+              <a href="https://x.com/deepennehra" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+              <a href="https://www.instagram.com/nehra_deepen" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            </div>
+          </div>
+
+          <!-- HERO RIGHT: INTERACTIVE 3D MODEL -->
+          <div class="hero-right">
+            <div class="hero-3d-stage" id="hero-3d-stage" aria-label="Interactive 3D Technology Core">
+              <canvas id="hero-3d-canvas"></canvas>
+              <!-- 3D HUD OVERLAYS -->
+              <div class="hero-3d-hud" aria-hidden="true">
+                <div class="hud-item hud-top-left">
+                  <span class="hud-pulse"></span>
+                  <span class="hud-mono">CORE // 3D MATRIX</span>
+                </div>
+                <div class="hud-item hud-top-right">
+                  <span class="hud-badge"><i class="fas fa-arrows-spin"></i> DRAG TO ORBIT</span>
+                </div>
+                <div class="hud-item hud-bottom-left">
+                  <span class="hud-mono">INTERACTIVE 3D CORE</span>
+                </div>
+                <div class="hud-item hud-bottom-right">
+                  <span class="hud-mono" id="hud-fps">WEBGL &bull; 60FPS</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-    </div>
 
-    <!-- Custom Viewfinder / Reticle Cursor -->
-    <div class="cinema-cursor" id="cinema-cursor" aria-hidden="true">
-        <div class="cursor-crosshair cursor-ch-t"></div>
-        <div class="cursor-crosshair cursor-ch-b"></div>
-        <div class="cursor-crosshair cursor-ch-l"></div>
-        <div class="cursor-crosshair cursor-ch-r"></div>
-        <div class="cursor-dot"></div>
-        <span class="cursor-tag"></span>
-    </div>
-    <div class="cinema-cursor-follower" id="cinema-cursor-follower" aria-hidden="true"></div>
+        <!-- HERO BOTTOM BAR -->
+        <div class="hero-bottom-bar">
+          <div class="hero-scroll-label" aria-hidden="true">
+            <span class="scroll-line"></span>
+            <span>SCROLL<br>TO EXPLORE</span>
+          </div>
+          <div class="hero-stat-pills" aria-label="Key Highlights">
+            <div class="hero-stat-pill">
+              <span class="pill-num">04</span>
+              <span class="pill-text">FEATURED BUILDS</span>
+            </div>
+            <div class="hero-stat-pill">
+              <span class="pill-num">02+</span>
+              <span class="pill-text">YEARS ENG EXP</span>
+            </div>
+            <div class="hero-stat-pill">
+              <span class="pill-num">15+</span>
+              <span class="pill-text">TECH MASTERED</span>
+            </div>
+            <div class="hero-stat-pill">
+              <span class="pill-num">100%</span>
+              <span class="pill-text">PRODUCTION FOCUS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <!-- Navigation Header -->
-    <header class="header">
-        <nav class="nav" aria-label="Main Navigation">
-            <a href="#home" class="nav-logo" aria-label="Deepen Nehra Home">
-                <span class="logo-box">[DN]</span>
-                <span class="logo-text">DEEPEN NEHRA</span>
-            </a>
-            
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="#home" class="nav-link active" data-scene="00"><span class="scene-idx">00</span> PREMIERE</a></li>
-                <li><a href="#about" class="nav-link" data-scene="01"><span class="scene-idx">01</span> ABOUT</a></li>
-                <li><a href="#experience" class="nav-link" data-scene="02"><span class="scene-idx">02</span> EXPERIENCE</a></li>
-                <li><a href="#projects" class="nav-link" data-scene="03"><span class="scene-idx">03</span> PROJECTS</a></li>
-                <li><a href="#figma-design" class="nav-link" data-scene="04"><span class="scene-idx">04</span> STORYBOARDS</a></li>
-                <li><a href="#skills" class="nav-link" data-scene="05"><span class="scene-idx">05</span> SKILLS</a></li>
-                <li><a href="#contact" class="nav-link" data-scene="06"><span class="scene-idx">06</span> CONTACT</a></li>
+    <!-- ABOUT — sticky left layout -->
+    <section id="about" class="section about-section" aria-label="About Deepen Nehra">
+      <div class="sticky-layout">
+        <div class="sticky-left">
+          <div class="section-label">
+            <span class="section-num">01</span>
+            <span class="section-slash">/</span>
+            <span class="section-name">ABOUT</span>
+          </div>
+          <div class="sticky-portrait">
+            <img src="./images/profile.png" alt="Deepen Nehra portrait" class="portrait-img" loading="lazy">
+          </div>
+        </div>
+        <div class="sticky-right">
+          <div class="about-block reveal">
+            <h2 class="block-title">BEHIND<br>THE BUILD</h2>
+            <p class="block-body">I'm a Computer Science student at <strong>Polaris School of Technology, Bangalore</strong> (2024&#8211;2028), passionate about creating impactful technology solutions that solve real-world problems.</p>
+            <p class="block-body">My journey in tech is fueled by curiosity and an uncompromising drive for building scalable, user-centric applications. From architecting full-stack MERN platforms to deploying AI-powered applications, I specialize in turning ideas into production-ready software.</p>
+            <p class="block-body">My core strengths lie in <strong>full-stack engineering</strong>, <strong>healthcare technology</strong>, <strong>AI integrations</strong>, and <strong>real-time communication systems</strong>.</p>
+          </div>
+          <div class="stats-row reveal">
+            <div class="stat-card">
+              <span class="stat-num">8+</span>
+              <span class="stat-label">MAJOR BUILDS</span>
+              <p class="stat-desc">Full-stack applications spanning ML, Telehealth, Agritech &amp; Real-Time Systems</p>
+            </div>
+            <div class="stat-card">
+              <span class="stat-num">40+</span>
+              <span class="stat-label">TECHNOLOGIES</span>
+              <p class="stat-desc">MERN Stack, Next.js, Python, Scikit-learn, WebRTC, Redis, Docker</p>
+            </div>
+            <div class="stat-card">
+              <span class="stat-num">3&#215;</span>
+              <span class="stat-label">HACKATHONS</span>
+              <p class="stat-desc">Vibeathon Finalist, Smart India Hackathon, 24-hr All-Nighter Participant</p>
+            </div>
+          </div>
+          <div class="highlight-tags reveal">
+            <span class="h-tag"><i class="fas fa-university" aria-hidden="true"></i> Polaris School of Tech (2024&#8211;2028)</span>
+            <span class="h-tag"><i class="fas fa-code" aria-hidden="true"></i> Full-Stack MERN &amp; Next.js</span>
+            <span class="h-tag"><i class="fas fa-brain" aria-hidden="true"></i> AI &amp; Real-Time Systems</span>
+            <span class="h-tag"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Bengaluru, India</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section experience-section" aria-label="Work experience">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-num accent">02</span>
+          <h2 class="section-title">EXPERIENCE</h2>
+          <span class="section-divider" aria-hidden="true"></span>
+        </div>
+        <div class="exp-card reveal">
+          <div class="exp-card-header">
+            <span class="live-badge">
+              <span class="live-dot" aria-hidden="true"></span>
+              CURRENTLY ACTIVE &#8212; LIVE
+            </span>
+          </div>
+          <div class="exp-card-body">
+            <div class="exp-meta">
+              <div>
+                <h3 class="exp-role">Full Stack Developer &amp; App Developer</h3>
+                <p class="exp-company"><i class="fas fa-building" aria-hidden="true"></i> Vidya Heist</p>
+              </div>
+              <span class="exp-date">August 2026 &#8212; Present</span>
+            </div>
+            <p class="exp-lead">Driving core platform engineering and cross-platform mobile architecture for scalable educational tech products:</p>
+            <ul class="exp-list">
+              <li><span class="exp-bullet" aria-hidden="true">&#8594;</span><span><strong>Platform Maintenance:</strong> Actively engineering, maintaining, and scaling the <strong>Vidya Heist</strong> and <strong>Research Heist</strong> web platforms for high concurrency and seamless user experiences.</span></li>
+              <li><span class="exp-bullet" aria-hidden="true">&#8594;</span><span><strong>Mobile App Development:</strong> Architecting and building the <strong>Research Heist mobile application</strong> from the ground up, delivering high-performance cross-platform workflows.</span></li>
+              <li><span class="exp-bullet" aria-hidden="true">&#8594;</span><span><strong>Full-Stack Scalability:</strong> Implementing robust backend endpoints, real-time client state sync, and smooth responsive interfaces.</span></li>
             </ul>
-
-            <div class="nav-actions">
-                <!-- Theme Switcher Toggle -->
-                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme between Cinema and Minimal Mode" title="Toggle Cinema / Minimal Theme">
-                    <span class="theme-icon cinema-icon"><i class="fas fa-film"></i></span>
-                    <span class="theme-label" id="theme-label">CINEMA</span>
-                </button>
-
-                <!-- Mobile Hamburger Toggle -->
-                <button class="hamburger" id="hamburger" aria-label="Toggle Navigation Menu" aria-expanded="false">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+            <div class="tech-tags">
+              <span class="tech-tag">React.js</span>
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">Mobile App Dev</span>
+              <span class="tech-tag">Cross-Platform</span>
+              <span class="tech-tag">REST APIs</span>
+              <span class="tech-tag">Production Maintenance</span>
             </div>
-        </nav>
-    </header>
-
-    <main id="main-content">
-        <!-- Scene 00: Premiere / Hero Section -->
-        <section id="home" class="hero-scene">
-            <!-- Dynamic Projector Beam Following Cursor -->
-            <div class="projector-beam" id="projector-beam" aria-hidden="true"></div>
-            
-            <div class="container hero-container">
-                <div class="hero-content">
-                    <div class="marquee-eyebrow">
-                        <span class="marquee-indicator">● LIVE SCREENING</span>
-                        <span class="marquee-status">STATUS: AVAILABLE FOR OPERATIONS &amp; ROLES</span>
-                        <span class="marquee-coords">[41.3851° N, 2.1734° E]</span>
-                    </div>
-
-                    <!-- Marquee Heading Title -->
-                    <div class="marquee-sign">
-                        <div class="marquee-border-top"></div>
-                        <h1 class="hero-film-title">
-                            <span class="title-line title-gold">DEEPEN NEHRA</span>
-                        </h1>
-                        <p class="hero-tagline">WEAVING CODE INTO DIGITAL REALITIES</p>
-                        <div class="marquee-border-bottom"></div>
-                    </div>
-
-                    <div class="hero-credits-bar">
-                        <span class="credit-item"><strong>ROLE:</strong> FULL-STACK DEVELOPER</span>
-                        <span class="credit-sep">/</span>
-                        <span class="credit-item"><strong>DISCIPLINE:</strong> CREATIVE TECHNOLOGIST</span>
-                        <span class="credit-sep">/</span>
-                        <span class="credit-item"><strong>SPECIALTY:</strong> AI &amp; HEALTHCARE SYSTEMS</span>
-                    </div>
-
-                    <div class="hero-bio-box">
-                        <p class="hero-bio-p">
-                            Computer Science student at <strong>Polaris School of Technology, Bangalore</strong> (2024–2028). Engineering high-performance full-stack web architectures, intelligent AI models, and real-time distributed platforms.
-                        </p>
-                    </div>
-
-                    <div class="hero-cta-group">
-                        <a href="#projects" class="cinema-btn primary-btn">
-                            <i class="fas fa-layer-group"></i> VIEW PROJECTS
-                        </a>
-                        <a href="https://drive.google.com/file/d/1wRxeVPP46Vh5gMZPgxxM1-vxhUQmwLJj/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="cinema-btn secondary-btn">
-                            <i class="fas fa-file-pdf"></i> VIEW RESUME
-                        </a>
-                    </div>
-
-                    <div class="hero-social-reel">
-                        <span class="reel-label">CONNECT:</span>
-                        <div class="social-links-wrap">
-                            <a href="https://github.com/DeepenNehra" target="_blank" rel="noopener noreferrer" class="cinema-social-link" title="GitHub Profile" aria-label="GitHub">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://www.linkedin.com/in/deepen-nehra-39a1a1321/" target="_blank" rel="noopener noreferrer" class="cinema-social-link" title="LinkedIn Profile" aria-label="LinkedIn">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                            <a href="https://leetcode.com/u/nehra_deepen/" target="_blank" rel="noopener noreferrer" class="cinema-social-link" title="LeetCode Profile" aria-label="LeetCode">
-                                <i class="fas fa-code"></i>
-                            </a>
-                            <a href="https://x.com/deepennehra" target="_blank" rel="noopener noreferrer" class="cinema-social-link" title="X / Twitter" aria-label="X (Twitter)">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="https://www.instagram.com/nehra_deepen" target="_blank" rel="noopener noreferrer" class="cinema-social-link" title="Instagram Profile" aria-label="Instagram">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hero Portrait Framed as Film Director Still -->
-                <div class="hero-visual-frame">
-                    <div class="director-still-card" data-tilt>
-                        <div class="film-strip-side strip-left"></div>
-                        <div class="still-inner">
-                            <div class="still-corner corner-tl"></div>
-                            <div class="still-corner corner-tr"></div>
-                            <div class="still-corner corner-bl"></div>
-                            <div class="still-corner corner-br"></div>
-                            <img src="./images/profile.png" alt="Deepen Nehra Portrait" class="director-img">
-                            <div class="still-lens-glare"></div>
-                            <div class="still-badge">FULL-STACK DEVELOPER</div>
-                        </div>
-                        <div class="film-strip-side strip-right"></div>
-                        <div class="still-caption">
-                            <span class="caption-slate">PORTFOLIO REEL</span>
-                            <span class="caption-name">DEEPEN NEHRA</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Scene 01: About Section -->
-        <section id="about" class="scene-section about-scene">
-            <div class="container">
-                <div class="scene-heading-wrap">
-                    <div class="scene-badge">SCENE 01</div>
-                    <h2 class="scene-title shimmer-heading">BEHIND THE SCENES // ABOUT ME</h2>
-                    <div class="scene-meta">BACKGROUND, PHILOSOPHY &amp; CORE FOCUS</div>
-                </div>
-
-                <div class="about-grid-layout">
-                    <div class="about-story-card">
-                        <div class="about-card-header">
-                            <div class="about-card-tag"><i class="fas fa-terminal"></i> DEVELOPER PROFILE</div>
-                            <div class="about-location-tag"><i class="fas fa-map-marker-alt"></i> Bengaluru, India</div>
-                        </div>
-
-                        <div class="about-story-text">
-                            <p class="about-lead">
-                                I'm a Computer Science student at <strong>Polaris School of Technology, Bangalore</strong> (2024–2028), passionate about creating impactful technology solutions that solve real-world problems.
-                            </p>
-                            <p>
-                                My journey in tech is fueled by curiosity and an uncompromising drive for building scalable, user-centric applications. From architecting full-stack MERN platforms to deploying AI-powered applications, I specialize in turning ideas into production-ready software.
-                            </p>
-                            <p>
-                                My core strengths lie in <strong>full-stack engineering</strong>, <strong>healthcare technology</strong>, <strong>AI integrations</strong>, and <strong>real-time communication systems</strong>. I continuously push my technical limits through hands-on development and high-intensity hackathon sprints.
-                            </p>
-                        </div>
-
-                        <div class="about-key-highlights">
-                            <div class="highlight-pill">
-                                <i class="fas fa-university"></i>
-                                <span>Polaris School of Tech (2024–2028)</span>
-                            </div>
-                            <div class="highlight-pill">
-                                <i class="fas fa-code"></i>
-                                <span>Full-Stack MERN &amp; Next.js</span>
-                            </div>
-                            <div class="highlight-pill">
-                                <i class="fas fa-brain"></i>
-                                <span>AI &amp; Real-Time Systems</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Production Stats -->
-                    <div class="production-stats-grid">
-                        <div class="stat-slate-card">
-                            <div class="slate-top">
-                                <span class="slate-label">ACCOLADES &amp; HACKATHONS</span>
-                                <i class="fas fa-award slate-icon"></i>
-                            </div>
-                            <div class="slate-value">HACKATHON COMPETITOR</div>
-                            <p class="slate-detail">Vibeathon (Replit x Polaris) Finalist, Smart India Hackathon &amp; 24-hr All-Nighter Participant</p>
-                        </div>
-
-                        <div class="stat-slate-card">
-                            <div class="slate-top">
-                                <span class="slate-label">FILMOGRAPHY</span>
-                                <i class="fas fa-film slate-icon"></i>
-                            </div>
-                            <div class="slate-value">8+ MAJOR BUILDS</div>
-                            <p class="slate-detail">Full-stack applications spanning Machine Learning, Telehealth, Agritech &amp; Real-Time Systems</p>
-                        </div>
-
-                        <div class="stat-slate-card">
-                            <div class="slate-top">
-                                <span class="slate-label">EQUIPMENT ARSENAL</span>
-                                <i class="fas fa-layer-group slate-icon"></i>
-                            </div>
-                            <div class="slate-value">40+ TECHNOLOGIES</div>
-                            <p class="slate-detail">MERN Stack, Next.js, Python, Scikit-learn, WebRTC, Redis, Docker, Cloud APIs</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Scene 02: New Experience Section (Currently Filming) -->
-        <section id="experience" class="scene-section experience-scene">
-            <div class="container">
-                <div class="scene-heading-wrap">
-                    <div class="scene-badge">SCENE 02</div>
-                    <h2 class="scene-title shimmer-heading">IN-PRODUCTION // EXPERIENCE</h2>
-                    <div class="scene-meta">PROFESSIONAL INDUSTRY ENGAGEMENTS</div>
-                </div>
-
-                <div class="experience-timeline">
-                    <!-- Ongoing Production Entry -->
-                    <div class="timeline-reel-card ongoing-production">
-                        <div class="reel-film-header">
-                            <div class="clapper-stripes"></div>
-                            <div class="reel-status-banner">
-                                <span class="rec-dot-pulse"></span>
-                                <span class="rec-text">LIVE ON SET — CURRENTLY FILMING / ONGOING</span>
-                            </div>
-                        </div>
-
-                        <div class="reel-body">
-                            <div class="reel-main-info">
-                                <div class="role-company-wrap">
-                                    <h3 class="role-title">Full Stack Developer &amp; App Developer</h3>
-                                    <h4 class="company-name"><i class="fas fa-building"></i> Vidya Heist</h4>
-                                </div>
-                                <div class="timeline-badge">
-                                    <i class="far fa-calendar-alt"></i> August 2026 — PRESENT
-                                </div>
-                            </div>
-
-                            <div class="reel-description-box">
-                                <p class="lead-desc">
-                                    Driving core platform engineering and cross-platform mobile architecture for scalable educational tech products:
-                                </p>
-                                <ul class="experience-bullet-list">
-                                    <li>
-                                        <i class="fas fa-clapperboard bullet-icon"></i>
-                                        <span><strong>Platform Maintenance:</strong> Actively engineering, maintaining, and scaling the <strong>Vidya Heist</strong> and <strong>Research Heist</strong> web platforms for high concurrency and seamless user experiences.</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-mobile-alt bullet-icon"></i>
-                                        <span><strong>Mobile App Development:</strong> Architecting and building the <strong>Research Heist mobile application</strong> from the ground up, delivering high-performance cross-platform workflows.</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-server bullet-icon"></i>
-                                        <span><strong>Full-Stack Scalability:</strong> Implementing robust backend endpoints, real-time client state sync, and smooth responsive interfaces.</span>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class="reel-tech-tags">
-                                <span class="film-tag">React.js</span>
-                                <span class="film-tag">Node.js</span>
-                                <span class="film-tag">Mobile App Dev</span>
-                                <span class="film-tag">Cross-Platform</span>
-                                <span class="film-tag">REST APIs</span>
-                                <span class="film-tag">Production Maintenance</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Scene 03: Projects Section (Movie Poster Grid) -->
-        <section id="projects" class="scene-section projects-scene">
-            <div class="container">
-                <div class="scene-heading-wrap">
-                    <div class="scene-badge">SCENE 03</div>
-                    <h2 class="scene-title shimmer-heading">FEATURE PRESENTATIONS // THE POSTER VAULT</h2>
-                    <div class="scene-meta">FEATURE-LENGTH SOFTWARE PRODUCTIONS</div>
-                </div>
-
-                <div class="posters-grid">
-                    <!-- Project 1: The Segmentation Knight (NEW) -->
-                    <article class="movie-poster-card" data-tilt>
-                        <div class="poster-frame">
-                            <div class="poster-art-wrapper">
-                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=1100&fit=crop" alt="The Segmentation Knight Movie Poster" class="poster-image">
-                                <div class="poster-rating-badge gold-badge">
-                                    <i class="fas fa-star"></i> PREMIERE 2026
-                                </div>
-                                <div class="poster-genre-strip">SCI-FI / ANALYTICS PLATFORM</div>
-                                <div class="poster-scanline"></div>
-                                <div class="poster-actions-overlay">
-                                    <a href="https://segmentation-knight.netlify.app" target="_blank" rel="noopener noreferrer" class="poster-action-btn live" title="Watch Live Premiere">
-                                        <i class="fas fa-play"></i> PREMIERE
-                                    </a>
-                                    <a href="https://github.com/DeepenNehra/Retail-Customer-Segmentation" target="_blank" rel="noopener noreferrer" class="poster-action-btn repo" title="Examine Source Reel">
-                                        <i class="fab fa-github"></i> REEL
-                                    </a>
-                                </div>
-                            </div>
-                            
-                            <div class="poster-billing-block">
-                                <div class="poster-date">RELEASED: APRIL 2026</div>
-                                <h3 class="poster-title">THE SEGMENTATION KNIGHT</h3>
-                                <p class="poster-logline">
-                                    Segments customers into VIP, Regular, and At-Risk tiers using K-Means, PCA, and RFM analysis — turns raw purchase data into a same-day retention decision.
-                                </p>
-                                <div class="poster-impact-note">
-                                    <i class="fas fa-bolt"></i> Real-time per-tier dashboards, one-click Excel export &amp; Redis caching.
-                                </div>
-                                <div class="poster-credits-stack">
-                                    <span class="stack-pill">Scikit-learn</span>
-                                    <span class="stack-pill">Pandas</span>
-                                    <span class="stack-pill">NumPy</span>
-                                    <span class="stack-pill">Redis</span>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Project 2: Destinex -->
-                    <article class="movie-poster-card" data-tilt>
-                        <div class="poster-frame">
-                            <div class="poster-art-wrapper">
-                                <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&h=1100&fit=crop" alt="Destinex Movie Poster" class="poster-image">
-                                <div class="poster-rating-badge">
-                                    <i class="fas fa-shield-alt"></i> SECURE / FULL-STACK
-                                </div>
-                                <div class="poster-genre-strip">ADVENTURE / TOURISM PORTAL</div>
-                                <div class="poster-scanline"></div>
-                                <div class="poster-actions-overlay">
-                                    <a href="https://destinex-frontend.onrender.com/" target="_blank" rel="noopener noreferrer" class="poster-action-btn live" title="Watch Live Premiere">
-                                        <i class="fas fa-play"></i> PREMIERE
-                                    </a>
-                                    <a href="https://github.com/DeepenNehra/Destinex-A-travel-manager" target="_blank" rel="noopener noreferrer" class="poster-action-btn repo" title="Examine Source Reel">
-                                        <i class="fab fa-github"></i> REEL
-                                    </a>
-                                </div>
-                            </div>
-                            
-                            <div class="poster-billing-block">
-                                <div class="poster-date">PRODUCTION ARCHIVE</div>
-                                <h3 class="poster-title">DESTINEX</h3>
-                                <p class="poster-logline">
-                                    Full-Stack Tourism Booking Platform with secure JWT authentication, role-based dashboards, and seamless booking management.
-                                </p>
-                                <div class="poster-credits-stack">
-                                    <span class="stack-pill">MongoDB</span>
-                                    <span class="stack-pill">Express</span>
-                                    <span class="stack-pill">React</span>
-                                    <span class="stack-pill">Node.js</span>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Project 3: EduNexus -->
-                    <article class="movie-poster-card" data-tilt>
-                        <div class="poster-frame">
-                            <div class="poster-art-wrapper">
-                                <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&h=1100&fit=crop" alt="EduNexus Movie Poster" class="poster-image">
-                                <div class="poster-rating-badge orange-badge">
-                                    <i class="fas fa-fire"></i> HACKTOBERFEST 2025
-                                </div>
-                                <div class="poster-genre-strip">EDTECH / COLLABORATION</div>
-                                <div class="poster-scanline"></div>
-                                <div class="poster-actions-overlay">
-                                    <a href="https://edunexus-ebon.vercel.app/" target="_blank" rel="noopener noreferrer" class="poster-action-btn live" title="Watch Live Premiere">
-                                        <i class="fas fa-play"></i> PREMIERE
-                                    </a>
-                                    <a href="https://github.com/DeepenNehra/edunexus" target="_blank" rel="noopener noreferrer" class="poster-action-btn repo" title="Examine Source Reel">
-                                        <i class="fab fa-github"></i> REEL
-                                    </a>
-                                </div>
-                            </div>
-                            
-                            <div class="poster-billing-block">
-                                <div class="poster-date">OPEN SOURCE INITIATIVE</div>
-                                <h3 class="poster-title">EDUNEXUS</h3>
-                                <p class="poster-logline">
-                                    Full-Stack Learning &amp; Classroom Management Platform with real-time chat, instant notifications, and cloud file storage. Open for Hacktoberfest 2025!
-                                </p>
-                                <div class="poster-credits-stack">
-                                    <span class="stack-pill">MERN</span>
-                                    <span class="stack-pill">Tailwind</span>
-                                    <span class="stack-pill">WebSockets</span>
-                                    <span class="stack-pill">Open Source</span>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Project 4: Krishi Mitra -->
-                    <article class="movie-poster-card" data-tilt>
-                        <div class="poster-frame">
-                            <div class="poster-art-wrapper">
-                                <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&h=1100&fit=crop" alt="Krishi Mitra Movie Poster" class="poster-image">
-                                <div class="poster-rating-badge gold-badge">
-                                    <i class="fas fa-award"></i> SMART INDIA HACKATHON
-                                </div>
-                                <div class="poster-genre-strip">AGRITECH / AI ASSISTANT</div>
-                                <div class="poster-scanline"></div>
-                                <div class="poster-actions-overlay">
-                                    <a href="https://github.com/DeepenNehra/Krishi-Mitra" target="_blank" rel="noopener noreferrer" class="poster-action-btn live" title="Watch Live Premiere">
-                                        <i class="fas fa-play"></i> PREMIERE
-                                    </a>
-                                    <a href="https://github.com/DeepenNehra/Krishi-Mitra" target="_blank" rel="noopener noreferrer" class="poster-action-btn repo" title="Examine Source Reel">
-                                        <i class="fab fa-github"></i> REEL
-                                    </a>
-                                </div>
-                            </div>
-                            
-                            <div class="poster-billing-block">
-                                <div class="poster-date">NATIONAL HACKATHON</div>
-                                <h3 class="poster-title">KRISHI MITRA</h3>
-                                <p class="poster-logline">
-                                    AI-Based Crop Recommendation &amp; Farmer Assistance Platform for Smart India Hackathon with multilingual support, marketplace, and voice assistant.
-                                </p>
-                                <div class="poster-credits-stack">
-                                    <span class="stack-pill">Python</span>
-                                    <span class="stack-pill">React</span>
-                                    <span class="stack-pill">ML Model</span>
-                                    <span class="stack-pill">Flask</span>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Project 5: Arogya-AI -->
-                    <article class="movie-poster-card" data-tilt>
-                        <div class="poster-frame">
-                            <div class="poster-art-wrapper">
-                                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=1100&fit=crop" alt="Arogya-AI Movie Poster" class="poster-image">
-                                <div class="poster-rating-badge gold-badge">
-                                    <i class="fas fa-award"></i> VIBEATHON FINALIST
-                                </div>
-                                <div class="poster-genre-strip">HEALTHCARE / GEMINI AI</div>
-                                <div class="poster-scanline"></div>
-                                <div class="poster-actions-overlay">
-                                    <a href="https://arogyaai-zeta.vercel.app/" target="_blank" rel="noopener noreferrer" class="poster-action-btn live" title="Watch Live Premiere">
-                                        <i class="fas fa-play"></i> PREMIERE
-                                    </a>
-                                    <a href="https://github.com/DeepenNehra/Vibeathon" target="_blank" rel="noopener noreferrer" class="poster-action-btn repo" title="Examine Source Reel">
-                                        <i class="fab fa-github"></i> REEL
-                                    </a>
-                                </div>
-                            </div>
-                            
-                            <div class="poster-billing-block">
-                                <div class="poster-date">HACKATHON SHOWCASE</div>
-                                <h3 class="poster-title">AROGYA-AI</h3>
-                                <p class="poster-logline">
-                                    Vibeathon Project - AI-powered telemedicine platform with real-time multilingual translation and medical conversation analysis.
-                                </p>
-                                <div class="poster-credits-stack">
-                                    <span class="stack-pill">Next.js</span>
-                                    <span class="stack-pill">TypeScript</span>
-                                    <span class="stack-pill">Gemini AI</span>
-                                    <span class="stack-pill">WebRTC</span>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Project 6: SAHAYA -->
-                    <article class="movie-poster-card" data-tilt>
-                        <div class="poster-frame">
-                            <div class="poster-art-wrapper">
-                                <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=1100&fit=crop" alt="SAHAYA Movie Poster" class="poster-image">
-                                <div class="poster-rating-badge">
-                                    <i class="fas fa-shield-virus"></i> 24-HR ALL-NIGHTER
-                                </div>
-                                <div class="poster-genre-strip">SOCIAL IMPACT / REAL-TIME IOT</div>
-                                <div class="poster-scanline"></div>
-                                <div class="poster-actions-overlay">
-                                    <a href="https://github.com/DeepenNehra/Sahaya" target="_blank" rel="noopener noreferrer" class="poster-action-btn live" title="Watch Live Premiere">
-                                        <i class="fas fa-play"></i> PREMIERE
-                                    </a>
-                                    <a href="https://github.com/DeepenNehra/Sahaya" target="_blank" rel="noopener noreferrer" class="poster-action-btn repo" title="Examine Source Reel">
-                                        <i class="fab fa-github"></i> REEL
-                                    </a>
-                                </div>
-                            </div>
-                            
-                            <div class="poster-billing-block">
-                                <div class="poster-date">24-HOUR HACKATHON</div>
-                                <h3 class="poster-title">SAHAYA</h3>
-                                <p class="poster-logline">
-                                    Women Safety System with SOS alerts, live location tracking, and secure data logs. Built during 24-hour All-Nighter Hackathon.
-                                </p>
-                                <div class="poster-credits-stack">
-                                    <span class="stack-pill">JavaScript</span>
-                                    <span class="stack-pill">Firebase</span>
-                                    <span class="stack-pill">Maps API</span>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Project 7: Weather Forecast App -->
-                    <article class="movie-poster-card" data-tilt>
-                        <div class="poster-frame">
-                            <div class="poster-art-wrapper">
-                                <img src="https://images.unsplash.com/photo-1592210454359-9043f067919b?w=800&h=1100&fit=crop" alt="Weather Forecast Movie Poster" class="poster-image">
-                                <div class="poster-rating-badge">
-                                    <i class="fas fa-cloud-sun-rain"></i> LIVE SATELLITE
-                                </div>
-                                <div class="poster-genre-strip">METEOROLOGY / MAPS</div>
-                                <div class="poster-scanline"></div>
-                                <div class="poster-actions-overlay">
-                                    <a href="https://bright-medovik-ecb923.netlify.app/" target="_blank" rel="noopener noreferrer" class="poster-action-btn live" title="Watch Live Premiere">
-                                        <i class="fas fa-play"></i> PREMIERE
-                                    </a>
-                                    <a href="https://github.com/H-ario-m/WEATHER-APP--PST" target="_blank" rel="noopener noreferrer" class="poster-action-btn repo" title="Examine Source Reel">
-                                        <i class="fab fa-github"></i> REEL
-                                    </a>
-                                </div>
-                            </div>
-                            
-                            <div class="poster-billing-block">
-                                <div class="poster-date">INTERACTIVE ENGINE</div>
-                                <h3 class="poster-title">WEATHER FORECAST</h3>
-                                <p class="poster-logline">
-                                    Real-time weather application with hourly and weekly forecasts, air quality index, and interactive map integration.
-                                </p>
-                                <div class="poster-credits-stack">
-                                    <span class="stack-pill">JavaScript</span>
-                                    <span class="stack-pill">Weather API</span>
-                                    <span class="stack-pill">Maps</span>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Project 8: MediConnect -->
-                    <article class="movie-poster-card" data-tilt>
-                        <div class="poster-frame">
-                            <div class="poster-art-wrapper">
-                                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=1100&fit=crop" alt="MediConnect Movie Poster" class="poster-image">
-                                <div class="poster-rating-badge gold-badge">
-                                    <i class="fas fa-video"></i> HD WEBRTC STREAM
-                                </div>
-                                <div class="poster-genre-strip">TELEMEDICINE / REAL-TIME</div>
-                                <div class="poster-scanline"></div>
-                                <div class="poster-actions-overlay">
-                                    <a href="https://fastidious-daifuku-64bc60.netlify.app/" target="_blank" rel="noopener noreferrer" class="poster-action-btn live" title="Watch Live Premiere">
-                                        <i class="fas fa-play"></i> PREMIERE
-                                    </a>
-                                    <a href="https://github.com/DeepenNehra/Telemedicine-Demo" target="_blank" rel="noopener noreferrer" class="poster-action-btn repo" title="Examine Source Reel">
-                                        <i class="fab fa-github"></i> REEL
-                                    </a>
-                                </div>
-                            </div>
-                            
-                            <div class="poster-billing-block">
-                                <div class="poster-date">TELEHEALTH SUITE</div>
-                                <h3 class="poster-title">MEDICONNECT</h3>
-                                <p class="poster-logline">
-                                    Professional telemedicine platform connecting patients with healthcare professionals through secure HD video consultations and real-time chat. Features doctor availability status and instant booking.
-                                </p>
-                                <div class="poster-credits-stack">
-                                    <span class="stack-pill">React</span>
-                                    <span class="stack-pill">WebRTC</span>
-                                    <span class="stack-pill">Video Chat</span>
-                                    <span class="stack-pill">Healthcare</span>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
-                <div class="vault-footer-cta">
-                    <a href="https://github.com/DeepenNehra" target="_blank" rel="noopener noreferrer" class="cinema-btn secondary-script">
-                        <i class="fab fa-github"></i> ACCESS THE COMPLETE GITHUB ARCHIVE
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Scene 04: UI/UX Design & Storyboards (Figma Section) -->
-        <section id="figma-design" class="scene-section figma-scene">
-            <div class="container">
-                <div class="scene-heading-wrap">
-                    <div class="scene-badge">SCENE 04</div>
-                    <h2 class="scene-title shimmer-heading">STORYBOARDS // UI/UX CONCEPT ART</h2>
-                    <div class="scene-meta">FIGMA ARCHITECTURAL BLUEPRINTS &amp; INTERFACE DESIGN</div>
-                </div>
-
-                <div class="storyboard-reel-card">
-                    <div class="storyboard-intro">
-                        <i class="fab fa-figma figma-lead-icon"></i>
-                        <h3>Figma Design Productions</h3>
-                        <p>High-fidelity interface storyboards, user flows, and interactive prototypes designed for scalable modern web &amp; mobile systems.</p>
-                    </div>
-
-                    <div class="storyboard-grid">
-                        <!-- Figma Item 1 -->
-                        <a href="https://www.figma.com/design/rnZvuSl4uGwr3WJF8ZCgoy/Customer-Retail-Segmentation-Diagram" target="_blank" rel="noopener noreferrer" class="storyboard-item">
-                            <div class="storyboard-icon">📊</div>
-                            <div class="storyboard-content">
-                                <h4>Retail Customer Segmentation System</h4>
-                                <p>Internal analytics platform with PCA-driven clustering engine for consumer behavior analysis.</p>
-                                <div class="storyboard-tags">
-                                    <span>System Design</span>
-                                    <span>Data Visualization</span>
-                                    <span>Enterprise UI</span>
-                                </div>
-                            </div>
-                            <i class="fas fa-external-link-alt external-arrow"></i>
-                        </a>
-
-                        <!-- Figma Item 2 -->
-                        <a href="https://www.figma.com/board/Yk7nVsSU10Hp6A75bfKObG/Week-3-Bitcoin-Challenge" target="_blank" rel="noopener noreferrer" class="storyboard-item">
-                            <div class="storyboard-icon">₿</div>
-                            <div class="storyboard-content">
-                                <h4>Bitcoin Challenge Dashboard</h4>
-                                <p>Cryptocurrency tracking dashboard with real-time data visualization and portfolio management.</p>
-                                <div class="storyboard-tags">
-                                    <span>Dashboard Design</span>
-                                    <span>Crypto UI</span>
-                                    <span>Data Analytics</span>
-                                </div>
-                            </div>
-                            <i class="fas fa-external-link-alt external-arrow"></i>
-                        </a>
-
-                        <!-- Figma Item 3 -->
-                        <a href="https://www.figma.com/design/pCJNSfZexzRnHeHATQoKGF/Deepen---Women-Safety-App--Community-" target="_blank" rel="noopener noreferrer" class="storyboard-item">
-                            <div class="storyboard-icon">🛡️</div>
-                            <div class="storyboard-content">
-                                <h4>Women Safety App — Community Design</h4>
-                                <p>Complete mobile app design for women's safety with SOS features, community support, and live location tracking.</p>
-                                <div class="storyboard-tags">
-                                    <span>Mobile App</span>
-                                    <span>Social Impact</span>
-                                    <span>User Flow</span>
-                                </div>
-                            </div>
-                            <i class="fas fa-external-link-alt external-arrow"></i>
-                        </a>
-                    </div>
-
-                    <div class="storyboard-footer">
-                        <a href="https://www.figma.com/@deepennehra" target="_blank" rel="noopener noreferrer" class="cinema-btn primary-ticket">
-                            <span class="btn-text"><i class="fab fa-figma"></i> EXPLORE ALL FIGMA BLUEPRINTS (@deepennehra)</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Scene 05: Skills / Technical Crew & Equipment Manifest -->
-        <section id="skills" class="scene-section skills-scene">
-            <div class="container">
-                <div class="scene-heading-wrap">
-                    <div class="scene-badge">SCENE 05</div>
-                    <h2 class="scene-title shimmer-heading">TECHNICAL CREW // EQUIPMENT MANIFEST</h2>
-                    <div class="scene-meta">FULL PRODUCTION STACK &amp; CAPABILITIES</div>
-                </div>
-
-                <div class="crew-manifest-grid">
-                    <!-- Dept 1: Screenplay & Logic -->
-                    <div class="crew-dept-card">
-                        <div class="dept-header">
-                            <i class="fas fa-code dept-icon"></i>
-                            <div>
-                                <span class="dept-id">DEPT 01</span>
-                                <h3>PROGRAMMING LANGUAGES</h3>
-                            </div>
-                        </div>
-                        <div class="equipment-list">
-                            <span class="gear-tag">JavaScript</span>
-                            <span class="gear-tag">TypeScript</span>
-                            <span class="gear-tag">Python</span>
-                            <span class="gear-tag">Java</span>
-                            <span class="gear-tag">HTML5</span>
-                            <span class="gear-tag">CSS3</span>
-                        </div>
-                    </div>
-
-                    <!-- Dept 2: Set Design & Visuals -->
-                    <div class="crew-dept-card">
-                        <div class="dept-header">
-                            <i class="fas fa-layer-group dept-icon"></i>
-                            <div>
-                                <span class="dept-id">DEPT 02</span>
-                                <h3>FRONTEND ARCHITECTURE</h3>
-                            </div>
-                        </div>
-                        <div class="equipment-list">
-                            <span class="gear-tag">React.js</span>
-                            <span class="gear-tag">Next.js</span>
-                            <span class="gear-tag">Tailwind CSS</span>
-                            <span class="gear-tag">Bootstrap</span>
-                            <span class="gear-tag">Responsive Design</span>
-                            <span class="gear-tag">UI/UX Design</span>
-                        </div>
-                    </div>
-
-                    <!-- Dept 3: Soundstage & Backend -->
-                    <div class="crew-dept-card">
-                        <div class="dept-header">
-                            <i class="fas fa-server dept-icon"></i>
-                            <div>
-                                <span class="dept-id">DEPT 03</span>
-                                <h3>BACKEND &amp; ENGINES</h3>
-                            </div>
-                        </div>
-                        <div class="equipment-list">
-                            <span class="gear-tag">Node.js</span>
-                            <span class="gear-tag">Express.js</span>
-                            <span class="gear-tag">Flask</span>
-                            <span class="gear-tag">Django</span>
-                            <span class="gear-tag">FastAPI</span>
-                            <span class="gear-tag">REST APIs</span>
-                        </div>
-                    </div>
-
-                    <!-- Dept 4: Film Vault & Archives -->
-                    <div class="crew-dept-card">
-                        <div class="dept-header">
-                            <i class="fas fa-database dept-icon"></i>
-                            <div>
-                                <span class="dept-id">DEPT 04</span>
-                                <h3>DATABASES &amp; STORAGE</h3>
-                            </div>
-                        </div>
-                        <div class="equipment-list">
-                            <span class="gear-tag">MongoDB</span>
-                            <span class="gear-tag">MySQL</span>
-                            <span class="gear-tag">Firebase</span>
-                            <span class="gear-tag">PostgreSQL</span>
-                            <span class="gear-tag">Redis Caching</span>
-                        </div>
-                    </div>
-
-                    <!-- Dept 5: CGI & Neural Systems -->
-                    <div class="crew-dept-card">
-                        <div class="dept-header">
-                            <i class="fas fa-brain dept-icon"></i>
-                            <div>
-                                <span class="dept-id">DEPT 05</span>
-                                <h3>AI &amp; MACHINE LEARNING</h3>
-                            </div>
-                        </div>
-                        <div class="equipment-list">
-                            <span class="gear-tag">Google Gemini AI</span>
-                            <span class="gear-tag">OpenAI</span>
-                            <span class="gear-tag">K-Means &amp; PCA</span>
-                            <span class="gear-tag">Scikit-learn</span>
-                            <span class="gear-tag">NLP</span>
-                            <span class="gear-tag">Computer Vision</span>
-                        </div>
-                    </div>
-
-                    <!-- Dept 6: Live Broadcast & Streams -->
-                    <div class="crew-dept-card">
-                        <div class="dept-header">
-                            <i class="fas fa-satellite-dish dept-icon"></i>
-                            <div>
-                                <span class="dept-id">DEPT 06</span>
-                                <h3>REAL-TIME COMMUNICATION</h3>
-                            </div>
-                        </div>
-                        <div class="equipment-list">
-                            <span class="gear-tag">WebRTC</span>
-                            <span class="gear-tag">WebSockets</span>
-                            <span class="gear-tag">Socket.io</span>
-                            <span class="gear-tag">HD Video Consultations</span>
-                        </div>
-                    </div>
-
-                    <!-- Dept 7: Studio Tools & Rigs -->
-                    <div class="crew-dept-card">
-                        <div class="dept-header">
-                            <i class="fas fa-toolbox dept-icon"></i>
-                            <div>
-                                <span class="dept-id">DEPT 07</span>
-                                <h3>TOOLS &amp; PLATFORMS</h3>
-                            </div>
-                        </div>
-                        <div class="equipment-list">
-                            <span class="gear-tag">Git</span>
-                            <span class="gear-tag">GitHub</span>
-                            <span class="gear-tag">Figma</span>
-                            <span class="gear-tag">Vercel</span>
-                            <span class="gear-tag">Netlify</span>
-                            <span class="gear-tag">Render</span>
-                        </div>
-                    </div>
-
-                    <!-- Dept 8: Cloud & Broadcast APIs -->
-                    <div class="crew-dept-card">
-                        <div class="dept-header">
-                            <i class="fas fa-cloud dept-icon"></i>
-                            <div>
-                                <span class="dept-id">DEPT 08</span>
-                                <h3>CLOUD SERVICES &amp; APIS</h3>
-                            </div>
-                        </div>
-                        <div class="equipment-list">
-                            <span class="gear-tag">Google Cloud AI</span>
-                            <span class="gear-tag">Google Maps API</span>
-                            <span class="gear-tag">OpenWeather API</span>
-                            <span class="gear-tag">JWT Auth</span>
-                            <span class="gear-tag">OAuth</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Scene 06: Contact / Casting Call & Transmission -->
-        <section id="contact" class="scene-section contact-scene">
-            <div class="container">
-                <div class="scene-heading-wrap">
-                    <div class="scene-badge">SCENE 06</div>
-                    <h2 class="scene-title shimmer-heading">STUDIO CASTING // INITIATE TRANSMISSION</h2>
-                    <div class="scene-meta">DIRECT INQUIRIES, COLLABORATIONS &amp; CONTRACTS</div>
-                </div>
-
-                <div class="contact-layout">
-                    <!-- Studio Lines Info -->
-                    <div class="studio-lines-card">
-                        <div class="studio-lines-header">
-                            <i class="fas fa-broadcast-tower"></i>
-                            <h3>STUDIO DIRECT LINES</h3>
-                        </div>
-
-                        <div class="direct-line-item">
-                            <div class="line-icon"><i class="fas fa-envelope"></i></div>
-                            <div class="line-content">
-                                <span class="line-label">ELECTRONIC DISPATCH</span>
-                                <a href="mailto:nehra7deepen5@gmail.com" class="line-value">nehra7deepen5@gmail.com</a>
-                            </div>
-                        </div>
-
-                        <div class="direct-line-item">
-                            <div class="line-icon"><i class="fas fa-map-marker-alt"></i></div>
-                            <div class="line-content">
-                                <span class="line-label">STUDIO COORDINATES</span>
-                                <span class="line-value">Bengaluru, Karnataka, India</span>
-                            </div>
-                        </div>
-
-                        <div class="direct-line-item">
-                            <div class="line-icon"><i class="fas fa-satellite"></i></div>
-                            <div class="line-content">
-                                <span class="line-label">CONNECTED FREQUENCIES</span>
-                                <div class="contact-social-grid">
-                                    <a href="https://github.com/DeepenNehra" target="_blank" rel="noopener noreferrer" class="contact-pill-link" aria-label="GitHub"><i class="fab fa-github"></i> GitHub</a>
-                                    <a href="https://www.linkedin.com/in/deepen-nehra-39a1a1321/" target="_blank" rel="noopener noreferrer" class="contact-pill-link" aria-label="LinkedIn"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                                    <a href="https://leetcode.com/u/nehra_deepen/" target="_blank" rel="noopener noreferrer" class="contact-pill-link" aria-label="LeetCode"><i class="fas fa-code"></i> LeetCode</a>
-                                    <a href="https://x.com/deepennehra" target="_blank" rel="noopener noreferrer" class="contact-pill-link" aria-label="Twitter"><i class="fab fa-twitter"></i> X / Twitter</a>
-                                    <a href="https://www.instagram.com/nehra_deepen" target="_blank" rel="noopener noreferrer" class="contact-pill-link" aria-label="Instagram"><i class="fab fa-instagram"></i> Instagram</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Casting Transmission Form (EmailJS Integrated) -->
-                    <div class="transmission-form-wrapper">
-                        <form class="cinema-form" id="contactForm" novalidate>
-                            <div class="form-header-bar">
-                                <span class="film-tag">TRANSMISSION DISPATCH PROTOCOL</span>
-                                <span class="form-stamp">ENCRYPTED</span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="name" class="cinema-label">PRODUCER / IDENTIFIER <span class="req">*</span></label>
-                                <input type="text" id="name" name="name" class="cinema-input" placeholder="Your Name or Studio..." required autocomplete="name">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="email" class="cinema-label">ROUTING FREQUENCY (EMAIL) <span class="req">*</span></label>
-                                <input type="email" id="email" name="email" class="cinema-input" placeholder="producer@studio.com" required autocomplete="email">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="subject" class="cinema-label">PRODUCTION TITLE / SUBJECT</label>
-                                <input type="text" id="subject" name="subject" class="cinema-input" placeholder="Project Collaboration / Full-Stack Role">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="message" class="cinema-label">SCRIPT REEL / TRANSMISSION PAYLOAD <span class="req">*</span></label>
-                                <textarea id="message" name="message" rows="5" class="cinema-textarea" placeholder="Tell me about your project, timeline, or inquiry..." required></textarea>
-                            </div>
-
-                            <button type="submit" class="cinema-btn primary-ticket form-submit-btn" id="submit-btn">
-                                <span class="btn-text"><i class="fas fa-paper-plane"></i> TRANSMIT SCRIPT TO DEEPEN</span>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- End Credits Roll Footer -->
-    <footer class="end-credits-footer">
-        <div class="credits-roll-container">
-            <div class="credits-header">
-                <div class="credits-star">★ ★ ★</div>
-                <h3 class="credits-title">THE END CREDITS</h3>
-                <p class="credits-sub">A DEEPEN NEHRA PRODUCTION</p>
-            </div>
-
-            <div class="credits-columns">
-                <div class="credits-col">
-                    <span class="role-title-c">WRITTEN, DIRECTED &amp; DEVELOPED BY</span>
-                    <span class="name-c">Deepen Nehra</span>
-                </div>
-                <div class="credits-col">
-                    <span class="role-title-c">ALMA MATER</span>
-                    <span class="name-c">Polaris School of Technology (2024–2028)</span>
-                </div>
-                <div class="credits-col">
-                    <span class="role-title-c">LOCATION OF PRODUCTION</span>
-                    <span class="name-c">Bengaluru, Karnataka, India</span>
-                </div>
-            </div>
-
-            <div class="credits-bottom-bar">
-                <p class="copyright-p">
-                    &copy; <span id="year">2026</span> DEEPEN NEHRA. ALL RIGHTS RESERVED. FILMED IN HIGH DEFINITION CODE.
-                </p>
-                <div class="credits-anchor-jump">
-                    <a href="#home" class="scroll-top-btn" aria-label="Return to Premiere (Top)">
-                        <i class="fas fa-chevron-up"></i> TOP OF REEL
-                    </a>
-                </div>
-            </div>
+          </div>
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <!-- Toast Notification Banner -->
-    <div class="cinema-toast" id="toast" role="alert" aria-live="polite"></div>
+    <!-- PROJECTS -->
+    <section id="projects" class="section projects-section" aria-label="Projects showcase">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-num accent">03</span>
+          <h2 class="section-title">PROJECTS</h2>
+          <span class="section-divider" aria-hidden="true"></span>
+        </div>
+        <p class="section-sub reveal">Feature-length software productions &#8212; each one shipped &amp; live.</p>
+        <div class="projects-grid">
 
-    <script src="app.js"></script>
+          <!-- FLIP CARD: THE SEGMENTATION KNIGHT -->
+          <div class="project-flip-card reveal" data-card-id="1">
+            <div class="flip-card-inner">
+              
+              <!-- FRONT FACE -->
+              <div class="flip-card-face flip-card-front">
+                <div class="project-img-wrap">
+                  <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop&auto=format" alt="Data analytics visualization" class="project-img" loading="lazy">
+                  <div class="project-overlay" aria-hidden="true">
+                    <span class="project-year">APRIL 2026</span>
+                    <span class="flip-prompt-badge"><i class="fas fa-arrows-rotate"></i> FLIP FOR SPECS</span>
+                  </div>
+                </div>
+                <div class="project-info">
+                  <div class="project-meta">
+                    <span class="project-badge">SCI-FI / ANALYTICS</span>
+                    <div class="front-actions">
+                      <a href="https://segmentation-knight.netlify.app" target="_blank" rel="noopener noreferrer" class="quick-link-btn" aria-label="Visit Live Demo" title="Live Demo">&#x2197;</a>
+                      <a href="https://github.com/DeepenNehra/Retail-Customer-Segmentation" target="_blank" rel="noopener noreferrer" class="quick-link-btn" aria-label="View GitHub" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                  </div>
+                  <h3 class="project-name">THE SEGMENTATION KNIGHT</h3>
+                  <p class="project-desc">Segments customers into VIP, Regular, and At-Risk tiers using K-Means, PCA, and RFM analysis. Turns raw purchase data into same-day retention decisions.</p>
+                  <div class="project-footer-row">
+                    <div class="project-stack"><span>Scikit-learn</span><span>Pandas</span><span>NumPy</span><span>Redis</span><span>Flask</span></div>
+                    <button type="button" class="card-flip-btn" aria-label="Flip card for architectural details">
+                      <i class="fas fa-arrows-rotate"></i> SPECS
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- BACK FACE -->
+              <div class="flip-card-face flip-card-back">
+                <div class="back-header">
+                  <div class="back-badge-row">
+                    <span class="project-badge accent-badge">SYSTEM ARCHITECTURE</span>
+                    <span class="back-metric-badge">99.4% Clustering Accuracy</span>
+                  </div>
+                  <button type="button" class="card-flip-close-btn" aria-label="Flip card back to front">
+                    <i class="fas fa-rotate-left"></i> BACK
+                  </button>
+                </div>
+                
+                <div class="back-body">
+                  <h4 class="back-project-name">THE SEGMENTATION KNIGHT</h4>
+                  <p class="back-tagline">AI RETENTION ARCHITECTURE</p>
+                  <div class="back-highlights">
+                    <div class="highlight-item"><i class="fas fa-check-circle" aria-hidden="true"></i><span>High-dimensional data preprocessing with PCA dimensionality reduction & RFM feature engineering.</span></div><div class="highlight-item"><i class="fas fa-check-circle" aria-hidden="true"></i><span>Sub-millisecond cohort lookups powered by in-memory Redis caching.</span></div><div class="highlight-item"><i class="fas fa-check-circle" aria-hidden="true"></i><span>Actionable retention intelligence deployed with interactive Flask visualization dashboard.</span></div>
+                  </div>
+                </div>
+
+                <div class="back-actions-footer">
+                  <div class="back-cta-group">
+                    <a href="https://segmentation-knight.netlify.app" target="_blank" rel="noopener noreferrer" class="pill-btn pill-primary">
+                      <i class="fas fa-arrow-up-right-from-square"></i> LIVE DEMO
+                    </a>
+                    <a href="https://github.com/DeepenNehra/Retail-Customer-Segmentation" target="_blank" rel="noopener noreferrer" class="pill-btn pill-outline">
+                      <i class="fab fa-github"></i> GITHUB REPO
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- FLIP CARD: DESTINEX -->
+          <div class="project-flip-card reveal" data-card-id="2">
+            <div class="flip-card-inner">
+              
+              <!-- FRONT FACE -->
+              <div class="flip-card-face flip-card-front">
+                <div class="project-img-wrap">
+                  <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&h=500&fit=crop&auto=format" alt="Travel destinations" class="project-img" loading="lazy">
+                  <div class="project-overlay" aria-hidden="true">
+                    <span class="project-year">FULL-STACK MERN</span>
+                    <span class="flip-prompt-badge"><i class="fas fa-arrows-rotate"></i> FLIP FOR SPECS</span>
+                  </div>
+                </div>
+                <div class="project-info">
+                  <div class="project-meta">
+                    <span class="project-badge">ADVENTURE / TOURISM</span>
+                    <div class="front-actions">
+                      <a href="https://destinex-frontend.onrender.com/" target="_blank" rel="noopener noreferrer" class="quick-link-btn" aria-label="Visit Live Demo" title="Live Demo">&#x2197;</a>
+                      <a href="https://github.com/DeepenNehra/Destinex-A-travel-manager" target="_blank" rel="noopener noreferrer" class="quick-link-btn" aria-label="View GitHub" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                  </div>
+                  <h3 class="project-name">DESTINEX</h3>
+                  <p class="project-desc">Full-Stack Tourism Booking Platform with secure JWT authentication, role-based dashboards, and seamless booking management.</p>
+                  <div class="project-footer-row">
+                    <div class="project-stack"><span>MongoDB</span><span>Express</span><span>React</span><span>Node.js</span><span>JWT</span></div>
+                    <button type="button" class="card-flip-btn" aria-label="Flip card for architectural details">
+                      <i class="fas fa-arrows-rotate"></i> SPECS
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- BACK FACE -->
+              <div class="flip-card-face flip-card-back">
+                <div class="back-header">
+                  <div class="back-badge-row">
+                    <span class="project-badge accent-badge">SYSTEM ARCHITECTURE</span>
+                    <span class="back-metric-badge">100% Secure RBAC Auth</span>
+                  </div>
+                  <button type="button" class="card-flip-close-btn" aria-label="Flip card back to front">
+                    <i class="fas fa-rotate-left"></i> BACK
+                  </button>
+                </div>
+                
+                <div class="back-body">
+                  <h4 class="back-project-name">DESTINEX</h4>
+                  <p class="back-tagline">ENTERPRISE TOURISM PLATFORM</p>
+                  <div class="back-highlights">
+                    <div class="highlight-item"><i class="fas fa-check-circle" aria-hidden="true"></i><span>End-to-end tourism booking pipeline with automated booking confirmation workflows.</span></div><div class="highlight-item"><i class="fas fa-check-circle" aria-hidden="true"></i><span>Granular RBAC (Role-Based Access Control) for travelers, tour operators, and system admins.</span></div><div class="highlight-item"><i class="fas fa-check-circle" aria-hidden="true"></i><span>Dynamic MongoDB schema supporting multi-tier hotel & itinerary scheduling.</span></div>
+                  </div>
+                </div>
+
+                <div class="back-actions-footer">
+                  <div class="back-cta-group">
+                    <a href="https://destinex-frontend.onrender.com/" target="_blank" rel="noopener noreferrer" class="pill-btn pill-primary">
+                      <i class="fas fa-arrow-up-right-from-square"></i> LIVE DEMO
+                    </a>
+                    <a href="https://github.com/DeepenNehra/Destinex-A-travel-manager" target="_blank" rel="noopener noreferrer" class="pill-btn pill-outline">
+                      <i class="fab fa-github"></i> GITHUB REPO
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- FLIP CARD: EDUNEXUS -->
+          <div class="project-flip-card reveal" data-card-id="3">
+            <div class="flip-card-inner">
+              
+              <!-- FRONT FACE -->
+              <div class="flip-card-face flip-card-front">
+                <div class="project-img-wrap">
+                  <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&h=500&fit=crop&auto=format" alt="Online learning platform" class="project-img" loading="lazy">
+                  <div class="project-overlay" aria-hidden="true">
+                    <span class="project-year">HACKTOBERFEST 2025</span>
+                    <span class="flip-prompt-badge"><i class="fas fa-arrows-rotate"></i> FLIP FOR SPECS</span>
+                  </div>
+                </div>
+                <div class="project-info">
+                  <div class="project-meta">
+                    <span class="project-badge">OPEN SOURCE</span>
+                    <div class="front-actions">
+                      <a href="https://edunexus-ebon.vercel.app/" target="_blank" rel="noopener noreferrer" class="quick-link-btn" aria-label="Visit Live Demo" title="Live Demo">&#x2197;</a>
+                      <a href="https://github.com/DeepenNehra/edunexus" target="_blank" rel="noopener noreferrer" class="quick-link-btn" aria-label="View GitHub" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                  </div>
+                  <h3 class="project-name">EDUNEXUS</h3>
+                  <p class="project-desc">Full-Stack Learning & Classroom Management Platform with real-time chat, instant notifications, and cloud file storage. Open for Hacktoberfest 2025!</p>
+                  <div class="project-footer-row">
+                    <div class="project-stack"><span>MERN</span><span>Tailwind</span><span>WebSockets</span><span>Vercel</span></div>
+                    <button type="button" class="card-flip-btn" aria-label="Flip card for architectural details">
+                      <i class="fas fa-arrows-rotate"></i> SPECS
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- BACK FACE -->
+              <div class="flip-card-face flip-card-back">
+                <div class="back-header">
+                  <div class="back-badge-row">
+                    <span class="project-badge accent-badge">SYSTEM ARCHITECTURE</span>
+                    <span class="back-metric-badge"><50ms Socket Latency</span>
+                  </div>
+                  <button type="button" class="card-flip-close-btn" aria-label="Flip card back to front">
+                    <i class="fas fa-rotate-left"></i> BACK
+                  </button>
+                </div>
+                
+                <div class="back-body">
+                  <h4 class="back-project-name">EDUNEXUS</h4>
+                  <p class="back-tagline">REAL-TIME EDTECH PLATFORM</p>
+                  <div class="back-highlights">
+                    <div class="highlight-item"><i class="fas fa-check-circle" aria-hidden="true"></i><span>Instant messaging & classroom announcements orchestrated with bi-directional WebSockets.</span></div><div class="highlight-item"><i class="fas fa-check-circle" aria-hidden="true"></i><span>Secure assignment submission pipeline with cloud storage integration and automated grading aids.</span></div><div class="highlight-item"><i class="fas fa-check-circle" aria-hidden="true"></i><span>Active open-source repository recognized in Hacktoberfest with multiple community PR merges.</span></div>
+                  </div>
+                </div>
+
+                <div class="back-actions-footer">
+                  <div class="back-cta-group">
+                    <a href="https://edunexus-ebon.vercel.app/" target="_blank" rel="noopener noreferrer" class="pill-btn pill-primary">
+                      <i class="fas fa-arrow-up-right-from-square"></i> LIVE DEMO
+                    </a>
+                    <a href="https://github.com/DeepenNehra/edunexus" target="_blank" rel="noopener noreferrer" class="pill-btn pill-outline">
+                      <i class="fab fa-github"></i> GITHUB REPO
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- FLIP CARD: KRISHI MITRA -->
+          <div class="project-flip-card reveal" data-card-id="4">
+            <div class="flip-card-inner">
+              
+              <!-- FRONT FACE -->
+              <div class="flip-card-face flip-card-front">
+                <div class="project-img-wrap">
+                  <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&h=500&fit=crop&auto=format" alt="Agricultural field crops" class="project-img" loading="lazy">
+                  <div class="project-overlay" aria-hidden="true">
+                    <span class="project-year">SMART INDIA HACKATHON</span>
+                    <span class="flip-prompt-badge"><i class="fas fa-arrows-rotate"></i> FLIP FOR SPECS</span>
+                  </div>
+                </div>
+                <div class="project-info">
+                  <div class="project-meta">
+                    <span class="project-badge">HACKATHON</span>
+                    <div class="front-actions">
+                      <a href="https://github.com/DeepenNehra/Krishi-Mitra" target="_blank" rel="noopener noreferrer" class="quick-link-btn" aria-label="Visit Live Demo" title="Live Demo">&#x2197;</a>
+                      <a href="https://github.com/DeepenNehra/Krishi-Mitra" target="_blank" rel="noopener noreferrer" class="quick-link-btn" aria-label="View GitHub" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                  </div>
+                  <h3 class="project-name">KRISHI MITRA</h3>
+                  <p class="project-desc">AI-Based Crop Recommendation & Farmer Assistance Platform with multilingual support, marketplace, and voice assistant. Built for Smart India Hackathon.</p>
+                  <div class="project-footer-row">
+                    <div class="project-stack"><span>Python</span><span>React</span><span>ML Model</span><span>Flask</span></div>
+                    <button type="button" class="card-flip-btn" aria-label="Flip card for architectural details">
+                      <i class="fas fa-arrows-rotate"></i> SPECS
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- BACK FACE -->
+              <div class="flip-card-face flip-card-back">
+                <div class="back-header">
+                  <div class="back-badge-row">
+                    <span class="project-badge accent-badge">SYSTEM ARCHITECTURE</span>
+                    <span class="back-metric-badge">SIH '24 National Hackathon</span>
+                  </div>
+                  <button type="button" class="card-flip-close-btn" aria-label="Flip card back to front">
+                    <i class="fas fa-rotate-left"></i> BACK
+                  </button>
+                </div>
+                
+                <div class="back-body">
+                  <h4 class="back-project-name">KRISHI MITRA</h4>
+                  <p class="back-tagline">INTELLIGENT AGRITECH SUITE</p>
+                  <div class="back-highlights">
+                    <div class="highlight-item"><i class="fas fa-check-circle" aria-hidden="true"></i><span>Trained machine learning models evaluating soil N-P-K levels, rainfall, temperature, and humidity.</span></div><div class="highlight-item"><i class="fas fa-check-circle" aria-hidden="true"></i><span>Multilingual voice-activated assistance for regional Indian dialects.</span></div><div class="highlight-item"><i class="fas fa-check-circle" aria-hidden="true"></i><span>Integrated farmer direct marketplace to eliminate intermediaries and maximize crop yields.</span></div>
+                  </div>
+                </div>
+
+                <div class="back-actions-footer">
+                  <div class="back-cta-group">
+                    <a href="https://github.com/DeepenNehra/Krishi-Mitra" target="_blank" rel="noopener noreferrer" class="pill-btn pill-primary">
+                      <i class="fas fa-arrow-up-right-from-square"></i> LIVE DEMO
+                    </a>
+                    <a href="https://github.com/DeepenNehra/Krishi-Mitra" target="_blank" rel="noopener noreferrer" class="pill-btn pill-outline">
+                      <i class="fab fa-github"></i> GITHUB REPO
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- FLIP CARD: AROGYA-AI -->
+          <div class="project-flip-card reveal" data-card-id="5">
+            <div class="flip-card-inner">
+              
+              <!-- FRONT FACE -->
+              <div class="flip-card-face flip-card-front">
+                <div class="project-img-wrap">
+                  <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=500&fit=crop&auto=format" alt="Medical healthcare technology" class="project-img" loading="lazy">
+                  <div class="project-overlay" aria-hidden="true">
+                    <span class="project-year">VIBEATHON FINALIST</span>
+                    <span class="flip-prompt-badge"><i class="fas fa-arrows-rotate"></i> FLIP FOR SPECS</span>
+                  </div>
+                </div>
+                <div class="project-info">
+                  <div class="project-meta">
+                    <span class="project-badge">AWARD</span>
+                    <div class="front-actions">
+                      <a href="https://arogyaai-zeta.vercel.app/" target="_blank" rel="noopener noreferrer" class="quick-link-btn" aria-label="Visit Live Demo" title="Live Demo">&#x2197;</a>
+                      <a href="https://github.com/DeepenNehra/Vibeathon" target="_blank" rel="noopener noreferrer" class="quick-link-btn" aria-label="View GitHub" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                  </div>
+                  <h3 class="project-name">AROGYA-AI</h3>
+                  <p class="project-desc">Vibeathon Finalist. AI-powered telemedicine with real-time multilingual translation and medical conversation analysis via Google Gemini AI.</p>
+                  <div class="project-footer-row">
+                    <div class="project-stack"><span>Next.js</span><span>TypeScript</span><span>Gemini AI</span><span>WebRTC</span></div>
+                    <button type="button" class="card-flip-btn" aria-label="Flip card for architectural details">
+                      <i class="fas fa-arrows-rotate"></i> SPECS
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- BACK FACE -->
+              <div class="flip-card-face flip-card-back">
+                <div class="back-header">
+                  <div class="back-badge-row">
+                    <span class="project-badge accent-badge">SYSTEM ARCHITECTURE</span>
+                    <span class="back-metric-badge">TOP 5 Vibeathon Finalist</span>
+                  </div>
+                  <button type="button" class="card-flip-close-btn" aria-label="Flip card back to front">
+                    <i class="fas fa-rotate-left"></i> BACK
+                  </button>
+                </div>
+                
+                <div class="back-body">
+                  <h4 class="back-project-name">AROGYA-AI</h4>
+                  <p class="back-tagline">TELEMEDICINE & AI DIAGNOSTICS</p>
+                  <div class="back-highlights">
+                    <div class="highlight-item"><i class="fas fa-check-circle" aria-hidden="true"></i><span>Live doctor-patient video streams via low-latency WebRTC mesh connections.</span></div><div class="highlight-item"><i class="fas fa-check-circle" aria-hidden="true"></i><span>Google Gemini AI integration summarizing diagnostic consultations into structured EHR notes.</span></div><div class="highlight-item"><i class="fas fa-check-circle" aria-hidden="true"></i><span>Real-time speech translation removing language barriers in rural healthcare delivery.</span></div>
+                  </div>
+                </div>
+
+                <div class="back-actions-footer">
+                  <div class="back-cta-group">
+                    <a href="https://arogyaai-zeta.vercel.app/" target="_blank" rel="noopener noreferrer" class="pill-btn pill-primary">
+                      <i class="fas fa-arrow-up-right-from-square"></i> LIVE DEMO
+                    </a>
+                    <a href="https://github.com/DeepenNehra/Vibeathon" target="_blank" rel="noopener noreferrer" class="pill-btn pill-outline">
+                      <i class="fab fa-github"></i> GITHUB REPO
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- FLIP CARD: SAHAYA -->
+          <div class="project-flip-card reveal" data-card-id="6">
+            <div class="flip-card-inner">
+              
+              <!-- FRONT FACE -->
+              <div class="flip-card-face flip-card-front">
+                <div class="project-img-wrap">
+                  <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=500&fit=crop&auto=format" alt="Community safety" class="project-img" loading="lazy">
+                  <div class="project-overlay" aria-hidden="true">
+                    <span class="project-year">24-HR HACKATHON</span>
+                    <span class="flip-prompt-badge"><i class="fas fa-arrows-rotate"></i> FLIP FOR SPECS</span>
+                  </div>
+                </div>
+                <div class="project-info">
+                  <div class="project-meta">
+                    <span class="project-badge">SOCIAL IMPACT</span>
+                    <div class="front-actions">
+                      <a href="https://github.com/DeepenNehra/Sahaya" target="_blank" rel="noopener noreferrer" class="quick-link-btn" aria-label="Visit Live Demo" title="Live Demo">&#x2197;</a>
+                      <a href="https://github.com/DeepenNehra/Sahaya" target="_blank" rel="noopener noreferrer" class="quick-link-btn" aria-label="View GitHub" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                  </div>
+                  <h3 class="project-name">SAHAYA</h3>
+                  <p class="project-desc">Women Safety System with SOS alerts, live location tracking, and secure data logs. Built during a 24-hour All-Nighter Hackathon.</p>
+                  <div class="project-footer-row">
+                    <div class="project-stack"><span>JavaScript</span><span>Firebase</span><span>Maps API</span></div>
+                    <button type="button" class="card-flip-btn" aria-label="Flip card for architectural details">
+                      <i class="fas fa-arrows-rotate"></i> SPECS
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- BACK FACE -->
+              <div class="flip-card-face flip-card-back">
+                <div class="back-header">
+                  <div class="back-badge-row">
+                    <span class="project-badge accent-badge">SYSTEM ARCHITECTURE</span>
+                    <span class="back-metric-badge">24 HR Hackathon Build</span>
+                  </div>
+                  <button type="button" class="card-flip-close-btn" aria-label="Flip card back to front">
+                    <i class="fas fa-rotate-left"></i> BACK
+                  </button>
+                </div>
+                
+                <div class="back-body">
+                  <h4 class="back-project-name">SAHAYA</h4>
+                  <p class="back-tagline">RAPID SOS EMERGENCY SYSTEM</p>
+                  <div class="back-highlights">
+                    <div class="highlight-item"><i class="fas fa-check-circle" aria-hidden="true"></i><span>One-tap emergency trigger broadcasting live GPS geolocation to trusted emergency contacts.</span></div><div class="highlight-item"><i class="fas fa-check-circle" aria-hidden="true"></i><span>Real-time Firebase Firestore synchronization for instantaneous responder dispatch.</span></div><div class="highlight-item"><i class="fas fa-check-circle" aria-hidden="true"></i><span>Offline caching ensures critical alert queuing even under intermittent cellular connectivity.</span></div>
+                  </div>
+                </div>
+
+                <div class="back-actions-footer">
+                  <div class="back-cta-group">
+                    <a href="https://github.com/DeepenNehra/Sahaya" target="_blank" rel="noopener noreferrer" class="pill-btn pill-primary">
+                      <i class="fas fa-arrow-up-right-from-square"></i> LIVE DEMO
+                    </a>
+                    <a href="https://github.com/DeepenNehra/Sahaya" target="_blank" rel="noopener noreferrer" class="pill-btn pill-outline">
+                      <i class="fab fa-github"></i> GITHUB REPO
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- FLIP CARD: WEATHER FORECAST -->
+          <div class="project-flip-card reveal" data-card-id="7">
+            <div class="flip-card-inner">
+              
+              <!-- FRONT FACE -->
+              <div class="flip-card-face flip-card-front">
+                <div class="project-img-wrap">
+                  <img src="https://images.unsplash.com/photo-1592210454359-9043f067919b?w=800&h=500&fit=crop&auto=format" alt="Weather clouds atmosphere" class="project-img" loading="lazy">
+                  <div class="project-overlay" aria-hidden="true">
+                    <span class="project-year">LIVE SATELLITE DATA</span>
+                    <span class="flip-prompt-badge"><i class="fas fa-arrows-rotate"></i> FLIP FOR SPECS</span>
+                  </div>
+                </div>
+                <div class="project-info">
+                  <div class="project-meta">
+                    <span class="project-badge">METEOROLOGY</span>
+                    <div class="front-actions">
+                      <a href="https://bright-medovik-ecb923.netlify.app/" target="_blank" rel="noopener noreferrer" class="quick-link-btn" aria-label="Visit Live Demo" title="Live Demo">&#x2197;</a>
+                      <a href="https://github.com/H-ario-m/WEATHER-APP--PST" target="_blank" rel="noopener noreferrer" class="quick-link-btn" aria-label="View GitHub" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                  </div>
+                  <h3 class="project-name">WEATHER FORECAST</h3>
+                  <p class="project-desc">Real-time weather application with hourly and weekly forecasts, air quality index, and interactive map integration.</p>
+                  <div class="project-footer-row">
+                    <div class="project-stack"><span>JavaScript</span><span>OpenWeather API</span><span>Maps</span></div>
+                    <button type="button" class="card-flip-btn" aria-label="Flip card for architectural details">
+                      <i class="fas fa-arrows-rotate"></i> SPECS
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- BACK FACE -->
+              <div class="flip-card-face flip-card-back">
+                <div class="back-header">
+                  <div class="back-badge-row">
+                    <span class="project-badge accent-badge">SYSTEM ARCHITECTURE</span>
+                    <span class="back-metric-badge">GLOBAL Live Forecasts</span>
+                  </div>
+                  <button type="button" class="card-flip-close-btn" aria-label="Flip card back to front">
+                    <i class="fas fa-rotate-left"></i> BACK
+                  </button>
+                </div>
+                
+                <div class="back-body">
+                  <h4 class="back-project-name">WEATHER FORECAST</h4>
+                  <p class="back-tagline">DYNAMIC ATMOSPHERIC RADAR</p>
+                  <div class="back-highlights">
+                    <div class="highlight-item"><i class="fas fa-check-circle" aria-hidden="true"></i><span>Live weather telemetry, wind vectors, and UV index mapped across interactive geo-canvases.</span></div><div class="highlight-item"><i class="fas fa-check-circle" aria-hidden="true"></i><span>Predictive 7-day atmospheric models and severe weather push warnings.</span></div><div class="highlight-item"><i class="fas fa-check-circle" aria-hidden="true"></i><span>Optimized lightweight client footprint delivering instant sub-second render times.</span></div>
+                  </div>
+                </div>
+
+                <div class="back-actions-footer">
+                  <div class="back-cta-group">
+                    <a href="https://bright-medovik-ecb923.netlify.app/" target="_blank" rel="noopener noreferrer" class="pill-btn pill-primary">
+                      <i class="fas fa-arrow-up-right-from-square"></i> LIVE DEMO
+                    </a>
+                    <a href="https://github.com/H-ario-m/WEATHER-APP--PST" target="_blank" rel="noopener noreferrer" class="pill-btn pill-outline">
+                      <i class="fab fa-github"></i> GITHUB REPO
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- FLIP CARD: MEDICONNECT -->
+          <div class="project-flip-card reveal" data-card-id="8">
+            <div class="flip-card-inner">
+              
+              <!-- FRONT FACE -->
+              <div class="flip-card-face flip-card-front">
+                <div class="project-img-wrap">
+                  <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=500&fit=crop&auto=format" alt="Telemedicine video consultation" class="project-img" loading="lazy">
+                  <div class="project-overlay" aria-hidden="true">
+                    <span class="project-year">HD WEBRTC VIDEO</span>
+                    <span class="flip-prompt-badge"><i class="fas fa-arrows-rotate"></i> FLIP FOR SPECS</span>
+                  </div>
+                </div>
+                <div class="project-info">
+                  <div class="project-meta">
+                    <span class="project-badge">TELEHEALTH</span>
+                    <div class="front-actions">
+                      <a href="https://fastidious-daifuku-64bc60.netlify.app/" target="_blank" rel="noopener noreferrer" class="quick-link-btn" aria-label="Visit Live Demo" title="Live Demo">&#x2197;</a>
+                      <a href="https://github.com/DeepenNehra/Telemedicine-Demo" target="_blank" rel="noopener noreferrer" class="quick-link-btn" aria-label="View GitHub" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                  </div>
+                  <h3 class="project-name">MEDICONNECT</h3>
+                  <p class="project-desc">Professional telemedicine platform connecting patients with healthcare professionals through secure HD video consultations and real-time chat.</p>
+                  <div class="project-footer-row">
+                    <div class="project-stack"><span>React</span><span>WebRTC</span><span>Socket.io</span><span>Healthcare</span></div>
+                    <button type="button" class="card-flip-btn" aria-label="Flip card for architectural details">
+                      <i class="fas fa-arrows-rotate"></i> SPECS
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- BACK FACE -->
+              <div class="flip-card-face flip-card-back">
+                <div class="back-header">
+                  <div class="back-badge-row">
+                    <span class="project-badge accent-badge">SYSTEM ARCHITECTURE</span>
+                    <span class="back-metric-badge">HD VIDEO P2P WebRTC</span>
+                  </div>
+                  <button type="button" class="card-flip-close-btn" aria-label="Flip card back to front">
+                    <i class="fas fa-rotate-left"></i> BACK
+                  </button>
+                </div>
+                
+                <div class="back-body">
+                  <h4 class="back-project-name">MEDICONNECT</h4>
+                  <p class="back-tagline">SECURE TELECONSULTATION CORE</p>
+                  <div class="back-highlights">
+                    <div class="highlight-item"><i class="fas fa-check-circle" aria-hidden="true"></i><span>Peer-to-peer encrypted WebRTC media channels ensuring strict HIPAA compliance and privacy.</span></div><div class="highlight-item"><i class="fas fa-check-circle" aria-hidden="true"></i><span>In-call collaborative prescription notepad and clinical file exchange.</span></div><div class="highlight-item"><i class="fas fa-check-circle" aria-hidden="true"></i><span>Automated appointment queuing and instant doctor availability triage.</span></div>
+                  </div>
+                </div>
+
+                <div class="back-actions-footer">
+                  <div class="back-cta-group">
+                    <a href="https://fastidious-daifuku-64bc60.netlify.app/" target="_blank" rel="noopener noreferrer" class="pill-btn pill-primary">
+                      <i class="fas fa-arrow-up-right-from-square"></i> LIVE DEMO
+                    </a>
+                    <a href="https://github.com/DeepenNehra/Telemedicine-Demo" target="_blank" rel="noopener noreferrer" class="pill-btn pill-outline">
+                      <i class="fab fa-github"></i> GITHUB REPO
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+        <div class="section-cta reveal">
+          <a href="https://github.com/DeepenNehra" target="_blank" rel="noopener noreferrer" class="pill-btn pill-outline" id="github-all-btn">
+            <i class="fab fa-github" aria-hidden="true"></i> VIEW ALL ON GITHUB
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- STORYBOARDS / FIGMA -->
+    <section id="figma-design" class="section figma-section" aria-label="Figma designs and storyboards">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-num accent">04</span>
+          <h2 class="section-title">STORYBOARDS</h2>
+          <span class="section-divider" aria-hidden="true"></span>
+        </div>
+        <p class="section-sub reveal">Figma architectural blueprints &amp; interface design &#8212; concept art for digital products.</p>
+        <div class="figma-list">
+          <a href="https://www.figma.com/design/rnZvuSl4uGwr3WJF8ZCgoy/Customer-Retail-Segmentation-Diagram" target="_blank" rel="noopener noreferrer" class="figma-item reveal">
+            <span class="figma-num" aria-hidden="true">01</span>
+            <div class="figma-info">
+              <h3>Retail Customer Segmentation System</h3>
+              <p>Internal analytics platform with PCA-driven clustering engine for consumer behavior analysis.</p>
+              <div class="figma-tags"><span>System Design</span><span>Data Visualization</span><span>Enterprise UI</span></div>
+            </div>
+            <span class="figma-arrow" aria-hidden="true">&#x2197;</span>
+          </a>
+          <a href="https://www.figma.com/board/Yk7nVsSU10Hp6A75bfKObG/Week-3-Bitcoin-Challenge" target="_blank" rel="noopener noreferrer" class="figma-item reveal">
+            <span class="figma-num" aria-hidden="true">02</span>
+            <div class="figma-info">
+              <h3>Bitcoin Challenge Dashboard</h3>
+              <p>Cryptocurrency tracking dashboard with real-time data visualization and portfolio management.</p>
+              <div class="figma-tags"><span>Dashboard Design</span><span>Crypto UI</span><span>Data Analytics</span></div>
+            </div>
+            <span class="figma-arrow" aria-hidden="true">&#x2197;</span>
+          </a>
+          <a href="https://www.figma.com/design/pCJNSfZexzRnHeHATQoKGF/Deepen---Women-Safety-App--Community-" target="_blank" rel="noopener noreferrer" class="figma-item reveal">
+            <span class="figma-num" aria-hidden="true">03</span>
+            <div class="figma-info">
+              <h3>Women Safety App &#8212; Community Design</h3>
+              <p>Complete mobile app design for women's safety with SOS features, community support, and live location tracking.</p>
+              <div class="figma-tags"><span>Mobile App</span><span>Social Impact</span><span>User Flow</span></div>
+            </div>
+            <span class="figma-arrow" aria-hidden="true">&#x2197;</span>
+          </a>
+        </div>
+        <div class="section-cta reveal">
+          <a href="https://www.figma.com/@deepennehra" target="_blank" rel="noopener noreferrer" class="pill-btn pill-outline" id="figma-profile-btn">
+            <i class="fab fa-figma" aria-hidden="true"></i> ALL FIGMA DESIGNS (@deepennehra)
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section skills-section" aria-label="Technical skills">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-num accent">05</span>
+          <h2 class="section-title">SKILLS</h2>
+          <span class="section-divider" aria-hidden="true"></span>
+        </div>
+        <p class="section-sub reveal">Full production stack &amp; capabilities &#8212; 40+ technologies across the board.</p>
+        <div class="skills-grid">
+          <div class="skill-card reveal"><span class="skill-num">01</span><i class="fas fa-code skill-icon" aria-hidden="true"></i><h3>PROGRAMMING<br>LANGUAGES</h3><div class="skill-tags"><span>JavaScript</span><span>TypeScript</span><span>Python</span><span>Java</span><span>HTML5</span><span>CSS3</span></div></div>
+          <div class="skill-card reveal"><span class="skill-num">02</span><i class="fas fa-layer-group skill-icon" aria-hidden="true"></i><h3>FRONTEND<br>ARCHITECTURE</h3><div class="skill-tags"><span>React.js</span><span>Next.js</span><span>Tailwind CSS</span><span>Bootstrap</span><span>Responsive Design</span><span>UI/UX Design</span></div></div>
+          <div class="skill-card reveal"><span class="skill-num">03</span><i class="fas fa-server skill-icon" aria-hidden="true"></i><h3>BACKEND<br>&amp; ENGINES</h3><div class="skill-tags"><span>Node.js</span><span>Express.js</span><span>Flask</span><span>Django</span><span>FastAPI</span><span>REST APIs</span></div></div>
+          <div class="skill-card reveal"><span class="skill-num">04</span><i class="fas fa-database skill-icon" aria-hidden="true"></i><h3>DATABASES<br>&amp; STORAGE</h3><div class="skill-tags"><span>MongoDB</span><span>MySQL</span><span>Firebase</span><span>PostgreSQL</span><span>Redis</span></div></div>
+          <div class="skill-card reveal"><span class="skill-num">05</span><i class="fas fa-brain skill-icon" aria-hidden="true"></i><h3>AI &amp; MACHINE<br>LEARNING</h3><div class="skill-tags"><span>Google Gemini AI</span><span>OpenAI</span><span>K-Means &amp; PCA</span><span>Scikit-learn</span><span>NLP</span><span>Computer Vision</span></div></div>
+          <div class="skill-card reveal"><span class="skill-num">06</span><i class="fas fa-satellite-dish skill-icon" aria-hidden="true"></i><h3>REAL-TIME<br>COMMS</h3><div class="skill-tags"><span>WebRTC</span><span>WebSockets</span><span>Socket.io</span><span>HD Video</span></div></div>
+          <div class="skill-card reveal"><span class="skill-num">07</span><i class="fas fa-toolbox skill-icon" aria-hidden="true"></i><h3>TOOLS<br>&amp; PLATFORMS</h3><div class="skill-tags"><span>Git</span><span>GitHub</span><span>Figma</span><span>Vercel</span><span>Netlify</span><span>Render</span></div></div>
+          <div class="skill-card reveal"><span class="skill-num">08</span><i class="fas fa-cloud skill-icon" aria-hidden="true"></i><h3>CLOUD<br>&amp; APIS</h3><div class="skill-tags"><span>Google Cloud AI</span><span>Maps API</span><span>OpenWeather API</span><span>JWT Auth</span><span>OAuth</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section contact-section" aria-label="Contact">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-num accent">06</span>
+          <h2 class="section-title">CONTACT</h2>
+          <span class="section-divider" aria-hidden="true"></span>
+        </div>
+        <div class="contact-layout">
+          <div class="contact-left reveal">
+            <h2 class="contact-headline">LET'S<br>BUILD<br>SOMETHING.</h2>
+            <div class="contact-info">
+              <div class="contact-line">
+                <span class="contact-label">EMAIL</span>
+                <a href="mailto:nehra7deepen5@gmail.com" class="contact-value">nehra7deepen5@gmail.com</a>
+              </div>
+              <div class="contact-line">
+                <span class="contact-label">LOCATION</span>
+                <span class="contact-value">Bengaluru, Karnataka, India</span>
+              </div>
+              <div class="contact-line">
+                <span class="contact-label">STATUS</span>
+                <span class="contact-value available"><span class="live-dot" aria-hidden="true"></span> AVAILABLE FOR WORK</span>
+              </div>
+            </div>
+            <nav class="contact-social" aria-label="Social media links">
+              <a href="https://github.com/DeepenNehra" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
+              <a href="https://www.linkedin.com/in/deepen-nehra-39a1a1321/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin" aria-hidden="true"></i> LinkedIn</a>
+              <a href="https://leetcode.com/u/nehra_deepen/" target="_blank" rel="noopener noreferrer"><i class="fas fa-code" aria-hidden="true"></i> LeetCode</a>
+              <a href="https://x.com/deepennehra" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter" aria-hidden="true"></i> X</a>
+              <a href="https://www.instagram.com/nehra_deepen" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram" aria-hidden="true"></i> Instagram</a>
+            </nav>
+          </div>
+          <div class="contact-right reveal">
+            <form class="contact-form" id="contactForm" novalidate aria-label="Contact form">
+              <div class="form-group">
+                <label for="name" class="form-label">YOUR NAME *</label>
+                <input type="text" id="name" name="name" class="form-input" placeholder="John Doe" required autocomplete="name">
+              </div>
+              <div class="form-group">
+                <label for="email" class="form-label">YOUR EMAIL *</label>
+                <input type="email" id="email" name="email" class="form-input" placeholder="john@company.com" required autocomplete="email">
+              </div>
+              <div class="form-group">
+                <label for="subject" class="form-label">SUBJECT</label>
+                <input type="text" id="subject" name="subject" class="form-input" placeholder="Project Collaboration / Full-Stack Role">
+              </div>
+              <div class="form-group">
+                <label for="message" class="form-label">MESSAGE *</label>
+                <textarea id="message" name="message" rows="5" class="form-textarea" placeholder="Tell me about your project..." required></textarea>
+              </div>
+              <button type="submit" class="pill-btn pill-primary submit-btn" id="submit-btn">
+                <i class="fas fa-paper-plane" aria-hidden="true"></i> SEND MESSAGE
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-display" aria-hidden="true">
+      <span class="footer-name">DEEPEN<br>NEHRA</span>
+    </div>
+    <div class="footer-bottom">
+      <nav class="footer-links" aria-label="Footer links">
+        <a href="https://github.com/DeepenNehra" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/deepen-nehra-39a1a1321/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.figma.com/@deepennehra" target="_blank" rel="noopener noreferrer">Figma</a>
+        <a href="https://drive.google.com/file/d/1wRxeVPP46Vh5gMZPgxxM1-vxhUQmwLJj/view?usp=sharing" target="_blank" rel="noopener noreferrer">Resume</a>
+      </nav>
+      <p class="footer-copy">&copy; <span id="year"></span> DEEPEN NEHRA. ALL RIGHTS RESERVED.</p>
+      <a href="#home" class="footer-top" aria-label="Back to top">&#8593; TOP</a>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="alert" aria-live="polite"></div>
+
+  <script src="three.min.js"></script>
+  <script src="lenis.min.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
